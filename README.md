@@ -1,4 +1,4 @@
-# MedicalOffice <img src="https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/blob/main/medical_office_manager/public/images/caduceus.jpg" alt="Texto Alternativo" height="60" width="60">
+# MedicalOffice 
 Este projeto é um repositório para um trabalho de faculdade da disciplina Fundamentos de Desenvolvimento de Software.
 
 ## Sobre o Medical Office
