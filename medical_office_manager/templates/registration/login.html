@@ -1,0 +1,36 @@
+<!--
+    CHECK ERRORS
+
+    USER IS AUTH
+        LOGIN
+
+        FORM
+-->
+{% if form.errors %}
+    <p>Username or password incorrect. Try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>You don't have permission for this page</p>
+    {% else %}
+        <p>Please login to see this page</p>
+    {% endif %}
+
+{% endif %}
+
+<form action="/accounts/login/" method = "POST">
+    {% csrf_token %}
+
+    <h1>LOGIN</h1>
+
+    Username <input name="username" type="text">
+    Password <input name="password" type="password">
+
+    <input type="hidden" name='next' value= "{{next}}">
+    
+    <button>Send</button>
+
+</form>
+
+

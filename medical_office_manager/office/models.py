@@ -3,28 +3,21 @@ from django.db import models
 
 # Create your models here.
 
-class Doctor(models.Model):
-    
-    def __init__(self, name):
-        self.name = name
-
-
-class Assistant(models.Model):
-    
-    def __init__(self, name):
-        self.name = name
-        
+      
+class User(models.Model):
+    name = models.CharField(max_length = 200, null = True)
+    role = models.CharField(max_length = 200, null = True) 
         
 class Patient(models.Model):
-    
-    def __init__(self, name, birth_date, CPF, phone):
-        self.name = name
-        self.birth_date = birth_date
-        self.CPF = CPF
-        self.phone = phone
+
+    name = models.CharField(max_length = 200, null = True)
+    date_of_birth = models.DateField(null = True, blank = True)
+    CPF = models.CharField(max_length = 11, null = True)
+    phone = models.CharField(max_length = 200, null = True)
         
-class Appointment(models.Model):
-    def __init__(self, date, time, patient):
-        self.date = date
-        self.time = time
-        self.patient = patient
+    class Meta:
+        ordering = ['name']
+    
+    def __str__(self):
+        return f'{self.name} ({self.CPF})'
+        
