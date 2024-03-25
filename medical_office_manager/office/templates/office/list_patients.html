@@ -6,5 +6,22 @@
 </head>
 <body>
     <p>PATIENTS LIST</p>
+
+    <div>
+        <table>
+            <tr>
+                <th>name</th>
+                <th>CPF</th>
+            </tr>
+            {% for patient in patients%}
+            <tr>
+                <td>{{patient.name}}</td>
+                <td>{{patient.CPF}}</td>
+            </tr>
+            {% endfor %}
+    
+    
+        </table>
+    </div>
 </body>
 </html>

@@ -14,7 +14,11 @@ def create_home_assistant(request):
 
 
 def list_patients(request):
-    return render(request, 'office/list_patients.html')
+    patients = {
+        'patients': Patient.objects.all()
+    }
+    
+    return render(request, 'office/list_patients.html', context = patients)
 
 
 def register_patient(request):
