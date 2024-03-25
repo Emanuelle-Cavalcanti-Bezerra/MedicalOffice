@@ -20,4 +20,10 @@ class Patient(models.Model):
     
     def __str__(self):
         return f'{self.name} ({self.CPF})'
+    
+    def update_patient(self, name, date_of_birth, CPF, phone):
+        self.name = name
+        self.date_of_birth = date_of_birth
+        self.CPF = CPF
+        self.phone = phone
         
