@@ -35,21 +35,7 @@ def create_home_assistant(request):
 
 @login_required
 def list_patients(request):
-    new_patient = Patient()
-    
-    post_data = request.POST
-    
-    name = post_data.get('name')
-    date_of_birth = post_data.get('date_of_birth')
-    CPF = post_data.get('CPF')
-    phone = post_data.get('phone')
-    
-    #new_patient.update_patient(name, date_of_birth, CPF, phone)
-    Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
-    
-    #if (new_patient != None):
-    #new_patient.save()
-    
+   
     patients = {
         'patients': Patient.objects.all()
     }
@@ -61,6 +47,19 @@ def list_patients(request):
 
 @login_required
 def register_patient(request):
+    if(request.method == "POST"):
+    
+        post_data = request.POST
+        
+        name = post_data.get('name')
+        date_of_birth = post_data.get('date_of_birth')
+        CPF = post_data.get('CPF')
+        phone = post_data.get('phone')
+        
+        #new_patient.update_patient(name, date_of_birth, CPF, phone)
+        Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
+        
+        return redirect('/office/list_patients/')
 
     
     return render(request, 'office/register_patient.html')

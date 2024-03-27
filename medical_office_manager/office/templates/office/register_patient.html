@@ -6,8 +6,8 @@
 </head>
 <body>
     <p>REGISTER PATIENT</p>
-    <!---->
-    <form action = '/office/list_patients/' method="POST">
+    
+    <form  method="POST">
         {% csrf_token %}
         
         Name: <input type="text" name="name">
@@ -19,7 +19,7 @@
         Telefone: <input type="text" name="phone">
         <br><br>
       
-        <button>Send</button>
+        <button type="submit">Send</button>
     </form>
 </body>
 </html>
