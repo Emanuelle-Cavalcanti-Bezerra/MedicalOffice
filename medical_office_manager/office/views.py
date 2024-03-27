@@ -7,7 +7,7 @@ from django.views import View
 
 # Create your views here.
 
-class CreateQuestionView(View):
+'''class CreateQuestionView(View):
     def get(self, request):
         return render(request, 'forum/create_question.html')
     
@@ -24,7 +24,7 @@ class CreateQuestionView(View):
         question = Question(title=title, details=details, have_tried=have_tried, created_date=created_date, username=username)
         question.save()
 
-        return redirect(reverse('forum:detail', args=[question.id]))
+        return redirect(reverse('forum:detail', args=[question.id]))'''
 
 def create_home_doctor(request):
     return render(request, 'office/home_doctor.html')
@@ -33,7 +33,7 @@ def create_home_doctor(request):
 def create_home_assistant(request):
     return render(request, 'office/home_assistant.html')
 
-'''@login_required
+@login_required
 def list_patients(request):
     new_patient = Patient()
     
@@ -53,13 +53,13 @@ def list_patients(request):
         'patients': Patient.objects.all()
     }
       
-    #return render(request, 'office/list_patients.html', context = patients)
+    return render(request, 'office/list_patients.html', context = patients)
     #return redirect ('/office/list_patients/', context = patients)
-    return redirect(reverse('office:list_patients'), context = patients)
+    #return redirect(reverse('office:list_patients'), context = patients)
     #return redirect(reverse('forum:detail', args=[question.id]))
 
 @login_required
 def register_patient(request):
 
     
-    return render(request, 'office/register_patient.html')'''
+    return render(request, 'office/register_patient.html')
