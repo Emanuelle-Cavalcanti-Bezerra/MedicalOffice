@@ -59,7 +59,8 @@ def register_patient(request):
         #new_patient.update_patient(name, date_of_birth, CPF, phone)
         Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
         
-        return redirect('/office/list_patients/')
+        #return redirect('/office/list_patients/')
+        return redirect('office:list_patients')
 
     
     return render(request, 'office/register_patient.html')
