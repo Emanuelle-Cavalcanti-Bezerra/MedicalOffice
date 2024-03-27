@@ -44,10 +44,11 @@ def list_patients(request):
     CPF = post_data.get('CPF')
     phone = post_data.get('phone')
     
-    new_patient.update_patient(name, date_of_birth, CPF, phone)
+    #new_patient.update_patient(name, date_of_birth, CPF, phone)
+    Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
     
     #if (new_patient != None):
-    new_patient.save()
+    #new_patient.save()
     
     patients = {
         'patients': Patient.objects.all()
