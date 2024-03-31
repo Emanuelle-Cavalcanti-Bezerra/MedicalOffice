@@ -16,7 +16,6 @@
     {% else %}
         <p>Please login to see this page</p>
     {% endif %}
-
 {% endif %}
 
 <form action="/accounts/login/" method = "POST">
@@ -26,10 +25,10 @@
 
     Username <input name="username" type="text">
     Password <input name="password" type="password">
+      
+    <button type="submit">Entrar</button>
 
     <input type="hidden" name='next' value= "{{next}}">
-    
-    <button>Send</button>
 
 </form>
 

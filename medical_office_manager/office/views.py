@@ -1,26 +1,39 @@
 from django.shortcuts import redirect, render
 from django.http import HttpRequest
-from django.urls import reverse
 from .models import User, Patient
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def create_home_doctor(request):
+        
     return render(request, 'office/home_doctor.html')
 
 @login_required
 def create_home_assistant(request):
     return render(request, 'office/home_assistant.html')
 
+
 @login_required
-def list_patients(request):
+def list_patients_for_doctor(request):
    
     patients = {
         'patients': Patient.objects.all()
     }
       
-    return render(request, 'office/list_patients.html', context = patients)
+    return render(request, 'office/list_patients_doctor.html', context = patients)
+
+
+@login_required
+def list_patients_for_assistant(request):
+   
+    patients = {
+        'patients': Patient.objects.all()
+    }
+      
+    return render(request, 'office/list_patients_assistant.html', context = patients)
+
 
 
 @login_required
@@ -37,7 +50,6 @@ def register_patient(request):
         Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
         
         #return redirect('/office/list_patients/')
-        return redirect('office:list_patients')
-
-    
+        return redirect('office:list_patients_assistant')
+                      
     return render(request, 'office/register_patient.html')

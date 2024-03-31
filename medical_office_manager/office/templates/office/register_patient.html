@@ -1,25 +1,23 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Patient</title>
-</head>
-<body>
-    <p>REGISTER PATIENT</p>
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
     
-    <form  method="POST">
-        {% csrf_token %}
+<p>REGISTER PATIENT</p>
         
-        Name: <input type="text" name="name">
-        <br><br>
-        Data de nascimento: <input type="date" name="date_of_birth">
-        <br><br>        
-        CPF: <input type="text" name="CPF">
-        <br><br>        
-        Telefone: <input type="text" name="phone">
-        <br><br>
-      
-        <button type="submit">Send</button>
-    </form>
-</body>
-</html>
+<form  method="POST">
+    {% csrf_token %}
+    
+    Name: <input type="text" name="name">
+    <br><br>
+    Data de nascimento: <input type="date" name="date_of_birth">
+    <br><br>        
+    CPF: <input type="text" name="CPF">
+    <br><br>        
+    Telefone: <input type="text" name="phone">
+    <br><br>
+
+    <button type="submit">Send</button>
+</form>
+
+{% endblock %}
+

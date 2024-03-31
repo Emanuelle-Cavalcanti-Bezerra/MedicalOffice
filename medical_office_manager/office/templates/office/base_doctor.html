@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Medical Office</title>
+</head>
+<body>
+    <span>
+        <a href="{% url 'office:home_doctor' %}">Home</a> 
+        | 
+        <a href="{% url 'office:list_patients_doctor' %}">Listar Pacientes</a>
+        | 
+        <a href="{%url 'logout'%}">Sair</a>
+    </span>
+
+    <br><br>
+            
+    {% block content %}
+    
+    {% endblock %}
+
+</body>
+</html>

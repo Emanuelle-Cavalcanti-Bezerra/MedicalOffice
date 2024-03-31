@@ -1,0 +1,27 @@
+{% extends "office/base_doctor.html" %}
+
+{% block content %}
+    
+<p>PATIENTS LIST (doctor version)</p>
+
+<div>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>CPF</th>
+        </tr>
+        {% for patient in patients%}
+        <tr>
+            <td>{{patient.name}}</td>
+            <td>{{patient.CPF}}</td>
+        </tr>
+        {% endfor %}
+
+
+    </table>
+</div>
+
+{% endblock %}
+
+
+
