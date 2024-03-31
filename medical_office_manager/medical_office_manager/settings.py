@@ -125,6 +125,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#from django.http import HttpRequest
-LOGIN_REDIRECT_URL = '/office/home_assistant' #if HttpRequest.user.groups == 'assistentes' else '/office/home_doctor'
-#LOGOUT_REDIRECT_URL = '/catalog/index'
+LOGIN_REDIRECT_URL = '/office/home_router' 
