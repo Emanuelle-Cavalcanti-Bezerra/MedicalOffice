@@ -16,26 +16,26 @@ def identify_user_group(request):
 
 
 @login_required
-def create_home_router(request: HttpRequest):
+def home_router(request: HttpRequest):
     user_group = identify_user_group(request)
 
     if(user_group == "assistentes"):
-        return create_home_assistant(request)
+        return home_assistant(request)
     elif (user_group == "médicos"):
-        return create_home_doctor(request)
+        return home_doctor(request)
     else:
         return HttpResponse("Você não está logado")
     
     
 @login_required
 @doctor_required
-def create_home_doctor(request):
+def home_doctor(request):
         
     return render(request, 'office/home_doctor.html')
 
 @login_required
 @assistant_required
-def create_home_assistant(request):
+def home_assistant(request):
     return render(request, 'office/home_assistant.html')
 
 
@@ -80,4 +80,5 @@ def register_patient(request):
         return redirect('office:list_patients_assistant')
                       
     return render(request, 'office/register_patient.html')
+
 
