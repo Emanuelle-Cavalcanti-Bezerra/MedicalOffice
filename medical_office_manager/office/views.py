@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from .models import Patient
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from django.db.models import F, Q
+from django.db.models import Q
 from . decorators import assistant_required, doctor_required
 
 # Create your views here.
@@ -64,8 +64,6 @@ def list_patients_for_assistant(request):
 @login_required
 @assistant_required
 def register_patient(request):
-    # caso o usuário não seja assistente, deve informar erro (403)
-        
     if(request.method == "POST"):
         post_data = request.POST
         
