@@ -6,6 +6,25 @@
         
 <form  method="POST">
     {% csrf_token %}
+
+    {% if errors.empty_fields %}
+        <br>
+        <p><b>{{ errors.empty_fields }}</b></p>
+        <br>
+    {% endif %}
+
+    {% if errors.invalid_cpf %}
+        <br>
+        <p><b>{{ errors.invalid_cpf }}</b></p>
+        <br>
+    {% endif %}
+
+    {% if errors.repeated_cpf %}
+        <br>
+        <p><b>{{ errors.repeated_cpf }}</b></p>
+        <br>
+    {% endif %}
+
     
     Name: <input type="text" name="name">
     <br><br>
@@ -17,6 +36,7 @@
     <br><br>
 
     <button type="submit">Send</button>
+    <button type="submit" onclick="window.location='{% url 'office:register_patient'%}'; return false;" >Cancel</button>
 </form>
 
 {% endblock %}

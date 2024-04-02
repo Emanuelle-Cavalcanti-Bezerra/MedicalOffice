@@ -64,6 +64,7 @@ def list_patients_for_assistant(request):
 @login_required
 @assistant_required
 def register_patient(request):
+    
     if(request.method == "POST"):
         post_data = request.POST
         
@@ -72,11 +73,86 @@ def register_patient(request):
         CPF = post_data.get('CPF')
         phone = post_data.get('phone')
         
-        Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
+        errors = get_errors(name, date_of_birth, CPF, phone)
+        has_errors = len(errors) != 0
         
-        #return redirect('/office/list_patients_assistant/')
-        return redirect('office:list_patients_assistant')
-                      
+        print("has errors", has_errors)        
+        if (has_errors):
+            context = {
+                "errors": errors,
+                "name" : name,
+                "date_of_birth" : date_of_birth,
+                "CPF" : CPF,
+                "phone" : phone
+            }
+            
+            return render(request, 'office/register_patient.html', context)
+        
+        else:                
+            Patient.objects.create(name = name, date_of_birth = date_of_birth, CPF = CPF, phone = phone)
+            
+            return redirect('office:list_patients_assistant')
+                              
     return render(request, 'office/register_patient.html')
 
 
+def is_cpf_valid(cpf: str):
+    result = False
+
+    if (len(cpf) == 11):
+
+        digitos = [int(char_digit) for char_digit in cpf]
+
+        # obtendo primeiro digito verificador
+        soma1 = 0
+        index2 = 0
+
+        for index1 in range(10, 1, -1):
+            produto = index1 * digitos[index2]
+            soma1 += produto
+            index2 += 1
+            
+        resto1 = soma1 % 11
+
+        digitoVerificador1 = None
+
+        if (resto1 <2):
+            digitoVerificador1 = 0
+        else:
+            digitoVerificador1 = 11 - resto1
+        
+        # obtendo segundo digito verificador    
+        soma2 = 0
+        index2 = 0
+        for index1 in range (11, 1, -1):
+            produto = index1 * digitos[index2]
+            soma2 += produto
+            index2 += 1
+                    
+        resto2 = soma2 % 11
+        
+        digitoVerificador2 = None
+        if (resto2 < 2):
+            digitoVerificador2 = 0
+        else:
+            digitoVerificador2 = 11 - resto2
+        
+        result = digitoVerificador1 == digitos[9] and digitoVerificador2 == digitos[10]
+    
+    return result
+
+def get_errors(name, date_of_birth, CPF, phone):
+    errors = {}
+
+    if (name == "" or CPF == ""):
+        errors["empty_fields"] = "Preencha todos os campos obrigatórios"
+        print("campos vazios")
+    
+    if (CPF != "" and is_cpf_valid(CPF) == False):
+        errors["invalid_cpf"] = "CPF inválido"
+        print("cpf inválido")
+        
+    if(len(Patient.objects.filter(CPF = CPF)) != 0):
+        errors["repeated_cpf"] = "CPF já previamente cadastrado no sistema"
+  
+    return errors 
