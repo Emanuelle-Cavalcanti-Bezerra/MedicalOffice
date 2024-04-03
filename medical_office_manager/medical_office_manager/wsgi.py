@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'medical_office_manager.settings')
+settings_module = 'medical_office_manager.deployment_settings' if 'WEBSITE_HOSTNAME' in os.environ else 'medical_office_manager.settings'
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
 application = get_wsgi_application()
