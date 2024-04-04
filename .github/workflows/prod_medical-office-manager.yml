@@ -34,7 +34,6 @@ jobs:
         run: |
           cd medical_office_manager/
           rm db.sqlite3
-          rm .env
           cd ..
 
       - name: Zip artifact for deployment
