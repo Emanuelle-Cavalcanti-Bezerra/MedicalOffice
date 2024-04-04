@@ -32,7 +32,7 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-          cd SEUPROJETODJANGO/
+          cd medical_office_manager/
           rm db.sqlite3
           rm .env
           cd ..
