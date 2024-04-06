@@ -37,9 +37,13 @@ NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
+    ALLOWED_HOSTS = []
+    #DEBUG = False
+    #ALLOWED_HOSTS = ['127.0.0.1']
+    
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'django-insecure-0kty14&le6^n_+=mbxr#7nw)5r%bhwomid6_lq_70q54r3_!=h'
-    ALLOWED_HOSTS = []
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -48,11 +52,11 @@ if NOT_PROD:
     }
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
-    DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+    #DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+    #ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
     
-    #DEBUG = False
-    #ALLOWED_HOSTS = ['https://medical-office-manager.azurewebsites.net/']
+    DEBUG = False
+    ALLOWED_HOSTS = ['medical-office-manager.azurewebsites.net']
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
     SECURE_SSL_REDIRECT = \
