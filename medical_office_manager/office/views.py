@@ -144,7 +144,7 @@ def is_cpf_valid(cpf: str):
 def get_errors(name, date_of_birth, CPF, phone):
     errors = {}
 
-    if (name == "" or CPF == ""):
+    if (name == "" or date_of_birth == "" or CPF == "" or phone == ""):
         errors["empty_fields"] = "Preencha todos os campos obrigatórios!"
         
     
