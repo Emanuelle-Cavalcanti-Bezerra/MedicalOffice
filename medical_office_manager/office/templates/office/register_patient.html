@@ -1,42 +1,52 @@
 {% extends "office/base_assistant.html" %}
 
 {% block content %}
-    
-<p>REGISTER PATIENT</p>
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>REGISTRAR PACIENTE</strong></p>
+    <br>
+</div>
+
         
 <form  method="POST">
     {% csrf_token %}
 
-    {% if errors.empty_fields %}
-        <br>
-        <p><b>{{ errors.empty_fields }}</b></p>
-        <br>
-    {% endif %}
+    <div class="container-fluid text-center display:block">
 
-    {% if errors.invalid_cpf %}
-        <br>
-        <p><b>{{ errors.invalid_cpf }}</b></p>
-        <br>
-    {% endif %}
+        {% if errors.empty_fields %}
+            
+            <b>{{ errors.empty_fields }}</b></p>
+            <br>
+        {% endif %}
 
-    {% if errors.repeated_cpf %}
-        <br>
-        <p><b>{{ errors.repeated_cpf }}</b></p>
-        <br>
-    {% endif %}
+        {% if errors.invalid_cpf %}
+            
+            <b>{{ errors.invalid_cpf }}</b></p>
+            <br>
+        {% endif %}
 
-    
-    Name: <input type="text" name="name">
-    <br><br>
-    Data de nascimento: <input type="date" name="date_of_birth">
-    <br><br>        
-    CPF: <input type="text" name="CPF">
-    <br><br>        
-    Telefone: <input type="text" name="phone">
-    <br><br>
+        {% if errors.repeated_cpf %}
+            
+            <b>{{ errors.repeated_cpf }}</b></p>
+            <br>
+        {% endif %}
 
-    <button type="submit">Send</button>
-    <button type="submit" onclick="window.location='{% url 'office:register_patient'%}'; return false;" >Cancel</button>
+        
+        Nome: <input type="text" name="name">
+        <br><br>
+        Data de nascimento: <input type="date" name="date_of_birth">
+        <br><br>        
+        CPF: <input type="text" name="CPF">
+        <br><br>        
+        Telefone: <input type="text" name="phone">
+        <br><br>
+
+        &emsp;&emsp;
+        <button type="submit">Send</button>
+        &emsp;&emsp;
+        <button type="submit" onclick="window.location='{% url 'office:register_patient'%}'; return false;" >Cancel</button>
+    </div>
 </form>
 
 {% endblock %}

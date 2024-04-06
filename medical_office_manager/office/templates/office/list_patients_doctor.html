@@ -1,24 +1,46 @@
 {% extends "office/base_doctor.html" %}
 
 {% block content %}
-    
-<p>PATIENTS LIST (doctor version)</p>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #ffe6d7;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #ffe6d7;
+  }
+  </style>
 
-<div>
-    <table>
-        <tr>
-            <th>name</th>
-            <th>CPF</th>
-        </tr>
-        {% for patient in patients%}
-        <tr>
-            <td>{{patient.name}}</td>
-            <td>{{patient.CPF}}</td>
-        </tr>
-        {% endfor %}
+<br> 
+
+<div class="container-fluid text-center display:block">
+    <p>&emsp;&emsp;<strong>LISTA DE PACIENTES</strong></p>
+    <br>
+
+    <div>
+        <table class="container-fluid text-center display:block">
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+            </tr>
+            {% for patient in patients%}
+            <tr>
+                <td>{{patient.name}}</td>
+                <td>{{patient.CPF}}</td>
+            </tr>
+            {% endfor %}
 
 
-    </table>
+        </table>
+    </div>
 </div>
 
 {% endblock %}
