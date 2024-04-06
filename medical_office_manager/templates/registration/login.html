@@ -1,38 +1,69 @@
-<!--
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <title>Medical Office</title>
+</head>
+<body>
+    <!--
     CHECK ERRORS
 
     USER IS AUTH
         LOGIN
 
         FORM
--->
-{% if form.errors %}
-    <p>Username or password incorrect. Try again.</p>
-{% endif %}
+    -->
 
-{% if next %}
-    {% if user.is_authenticated %}
-        <p>You don't have permission for this page</p>
-    {% else %}
-        <p>Please login to see this page</p>
+    <nav class="navbar-header py-3" style="background-color:#ff670f; ">
+        <div class="container-fluid text-center display:block">
+            <span class="navbar-brand mb-0 h1" style = "color: white">
+                <h1>MEDICAL OFFICE</h1>
+            </span>
+        </div>
+    </nav> 
+
+    {% if form.errors %}
+        <p>Username or password incorrect. Try again.</p>
     {% endif %}
-{% endif %}
 
-<form action="/accounts/login/" method = "POST">
-    {% csrf_token %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>You don't have permission for this page</p>
+        {% else %}
+            <p>Please login to see this page</p>
+        {% endif %}
+    {% endif %}
 
-    <h1>LOGIN</h1>
+    <form action="/accounts/login/" method = "POST"  >
+        {% csrf_token %}
+        
+        <div class="container-fluid text-center display:block">
+        <br><br>
+        
+        <p><strong>LOGIN</strong></p>
+        <br>
 
-    Username <input name="username" type="text">
-    Password <input name="password" type="password">
-      
-    <button type="submit">Entrar</button>
+        Usuário <input name="username" type="text">
+        <br><br>
+        Senha <input name="password" type="password">
+        <br><br>
 
-    <button type="submit" onclick="window.location.href='/accounts/login/'; return false;" >Cancel</button>
+        &emsp;&emsp;&emsp;&emsp;
+        <button type="submit">Entrar</button>
 
-    <input type="hidden" name='next' value= "{{next}}">
-    
+        &emsp;&emsp;
+        <button type="submit" onclick="window.location.href='/accounts/login/'; return false;" >Cancelar</button>
 
-</form>
+        <input type="hidden" name='next' value= "{{next}}">
+    </div>
+
+    </form>
+
+</body>
+</html>
+
 
 

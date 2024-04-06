@@ -145,14 +145,14 @@ def get_errors(name, date_of_birth, CPF, phone):
     errors = {}
 
     if (name == "" or CPF == ""):
-        errors["empty_fields"] = "Preencha todos os campos obrigatórios"
-        print("campos vazios")
+        errors["empty_fields"] = "Preencha todos os campos obrigatórios!"
+        
     
     if (CPF != "" and is_cpf_valid(CPF) == False):
-        errors["invalid_cpf"] = "CPF inválido"
-        print("cpf inválido")
+        errors["invalid_cpf"] = "CPF inválido!"
+        
         
     if(len(Patient.objects.filter(CPF = CPF)) != 0):
-        errors["repeated_cpf"] = "CPF já previamente cadastrado no sistema"
+        errors["repeated_cpf"] = "CPF já previamente cadastrado no sistema!"
   
     return errors 
