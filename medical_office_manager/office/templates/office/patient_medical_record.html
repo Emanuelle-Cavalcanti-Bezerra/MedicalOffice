@@ -1,0 +1,38 @@
+{% extends "office/base_doctor.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>PRONTUÁRIO DO PACIENTE</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    Nome: {{patient.name}}
+    <br>
+    Data de nascimento: {{birth_date}}
+    <br><br> 
+</div>
+     
+<div>
+    <!--
+        TODO: exibir prontuário enviado pela view através do contexto
+    -->
+    DD/MM/AAAA<br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae provident ullam cumque animi excepturi nostrum eius, sint incidunt eum rem! Porro natus incidunt repellendus repudiandae nesciunt laboriosam maxime nobis deleniti.
+
+    <br><br>
+
+    DD/MM/AAAA<br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, laudantium! A amet itaque tempore, consequuntur nobis et harum repellat vero deserunt corporis voluptate ratione voluptatem, veritatis necessitatibus dolor libero! Hic?
+
+</div>
+
+<br><br>
+<div class="container-fluid text-center display:block">
+    &emsp;&emsp;
+    <button type="submit" onclick="window.location='{% url 'office:patient_details_doctor' patient_id=patient.id%}'; return false;" >Voltar</button>
+</div>
+
+{% endblock %}

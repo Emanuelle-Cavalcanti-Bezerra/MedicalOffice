@@ -22,7 +22,9 @@ table {
 <br> 
 
 <div class="container-fluid text-center display:block">
-    <p>&emsp;&emsp;<strong>LISTA DE PACIENTES</strong></p>
+    <p><strong>LISTA DE PACIENTES</strong></p>
+    <br>
+    <p>Clique em um paciente para ver seus dados.</p>
     <br>
 
     <div>
@@ -33,8 +35,13 @@ table {
             </tr>
             {% for patient in patients%}
             <tr>
-                <td>{{patient.name}}</td>
-                <td>{{patient.CPF}}</td>
+              <td>
+                  <a  style = "text-decoration:none" href="{% url 'office:patient_details_doctor' patient_id=patient.id%}" ><span style = "color: black">{{patient.name}}</span></a>
+              </td>
+
+              <td>
+                  <a  style = "text-decoration:none" href="{% url 'office:patient_details_doctor' patient_id=patient.id%}" ><span style = "color: black">{{patient.CPF}}</span></a>
+              </td>
             </tr>
             {% endfor %}
 

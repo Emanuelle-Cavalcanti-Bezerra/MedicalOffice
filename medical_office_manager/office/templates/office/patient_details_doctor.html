@@ -1,0 +1,28 @@
+{% extends "office/base_doctor.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>DETALHES DO PACIENTE</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+
+    
+    Nome: {{patient.name}}
+    <br><br>
+    Data de nascimento: {{birth_date}}
+    <br><br>        
+    CPF: {{patient.CPF}}
+    <br><br>        
+    Telefone: {{patient.phone}}
+    <br><br>
+
+    <button type="submit" onclick="window.location='{% url 'office:patient_medical_record' patient_id=patient.id%}'; return false;" >Ver prontuário</button>
+    &emsp;&emsp;
+    <button type="submit" onclick="window.location='{% url 'office:list_patients_doctor'%}'; return false;" >Voltar</button>
+</div>
+
+{% endblock %}

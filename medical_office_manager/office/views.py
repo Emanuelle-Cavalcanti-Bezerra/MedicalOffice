@@ -106,6 +106,35 @@ def patient_details_assistant(request: HttpRequest, patient_id):
     
     return render(request, 'office/patient_details_assistant.html', context)
 
+
+@login_required
+@doctor_required
+def patient_details_doctor(request: HttpRequest, patient_id):
+    patient = Patient.objects.filter(id=patient_id)[0]
+    
+    birth_date = format_date(patient.date_of_birth)
+
+    context = {'patient': patient,
+               'birth_date': birth_date}
+    
+    return render(request, 'office/patient_details_doctor.html', context)
+
+
+@login_required
+@doctor_required
+def patient_medical_record(request: HttpRequest, patient_id):
+    patient = Patient.objects.filter(id=patient_id)[0]
+    
+    birth_date = format_date(patient.date_of_birth)
+    
+    # TODO: pegar prontuário no banco de dados e passar pro conexto para ser exibido no template
+
+    context = {'patient': patient,
+               'birth_date': birth_date}
+    
+    return render(request, 'office/patient_medical_record.html', context)
+    
+
 @login_required
 @assistant_required
 def edit_patient(request, patient_id, patient_id2):
@@ -149,7 +178,12 @@ def edit_patient(request, patient_id, patient_id2):
             return redirect('office:list_patients_assistant')
                               
     return render(request, 'office/edit_patient.html')
-    
+ 
+ 
+@login_required
+@assistant_required
+def delete_patient(request, patient_id): 
+    pass
 
 def is_cpf_valid(cpf: str):
     result = False
@@ -195,6 +229,16 @@ def is_cpf_valid(cpf: str):
         result = digitoVerificador1 == digitos[9] and digitoVerificador2 == digitos[10]
     
     return result
+
+
+def format_date(date):
+    date_str = str(date)
+    date_splited = date_str.split("-")
+    date_splited_inverted = date_splited[::-1]
+    formated_date = ("/").join(date_splited_inverted)
+    
+    return formated_date
+
 
 def get_errors(name, date_of_birth, CPF, phone, previews_CPF = None):
     errors = {}
