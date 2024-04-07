@@ -23,7 +23,9 @@
     <br> 
     
     <div class="container-fluid text-center display:block">
-        <p>&emsp;&emsp;<strong>LISTA DE PACIENTES</strong></p>
+        <p><strong>LISTA DE PACIENTES</strong></p>
+        <br>
+        <p>Selecione um paciente para ver seus detalhes e ou editar seus dados.</p>
         <br>
     
         <div>
@@ -34,8 +36,13 @@
                 </tr>
                 {% for patient in patients%}
                 <tr>
-                    <td><a href="{% url 'office:patient_details_assistant' patient_id=patient.id%}" >{{patient.name}}</a></td>
-                    <td>{{patient.CPF}}</td>
+                    <td>
+                        <a  style = "text-decoration:none" href="{% url 'office:patient_details_assistant' patient_id=patient.id%}" ><span style = "color: black">{{patient.name}}</span></a>
+                    </td>
+
+                    <td>
+                        <a  style = "text-decoration:none" href="{% url 'office:patient_details_assistant' patient_id=patient.id%}" ><span style = "color: black">{{patient.CPF}}</span></a>
+                    </td>
                 </tr>
                 {% endfor %}
     
