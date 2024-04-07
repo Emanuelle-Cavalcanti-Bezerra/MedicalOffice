@@ -75,8 +75,7 @@ def register_patient(request):
         
         errors = get_errors(name, date_of_birth, CPF, phone)
         has_errors = len(errors) != 0
-        
-        print("has errors", has_errors)        
+                       
         if (has_errors):
             context = {
                 "errors": errors,
@@ -95,6 +94,62 @@ def register_patient(request):
                               
     return render(request, 'office/register_patient.html')
 
+
+@login_required
+@assistant_required
+def patient_details_assistant(request: HttpRequest, patient_id):
+    patient = Patient.objects.filter(id=patient_id)[0]
+    birth_date = str(patient.date_of_birth)
+
+    context = {'patient': patient,
+               'birth_date': birth_date}
+    
+    return render(request, 'office/patient_details_assistant.html', context)
+
+@login_required
+@assistant_required
+def edit_patient(request, patient_id, patient_id2):
+    if(request.method == "POST"):
+        post_data = request.POST
+        
+        patient = Patient.objects.get(id=patient_id)
+        previews_cpf = patient.CPF
+        
+        name = post_data.get('name')
+        date_of_birth = post_data.get('date_of_birth')
+        CPF = post_data.get('CPF')
+        phone = post_data.get('phone')
+        
+        errors = get_errors(name, date_of_birth, CPF, phone, previews_cpf)
+        has_errors = len(errors) != 0
+                      
+        if (has_errors):
+            edited_patient = {
+                'id': patient_id,
+                'name': name,
+                'CPF': CPF,
+                'phone': phone
+            }
+            
+            context = {
+                "errors": errors,
+                "birth_date" : date_of_birth,
+                "patient": edited_patient
+            }
+            
+            return render(request, 'office/patient_details_assistant.html', context)
+        
+        else:                
+            patient.name = name
+            patient.date_of_birth = date_of_birth
+            patient.CPF = CPF
+            patient.phone = phone
+            patient.save()
+            
+            return redirect('office:list_patients_assistant')
+                              
+    return render(request, 'office/edit_patient.html')
+    
 
 def is_cpf_valid(cpf: str):
     result = False
@@ -141,7 +196,7 @@ def is_cpf_valid(cpf: str):
     
     return result
 
-def get_errors(name, date_of_birth, CPF, phone):
+def get_errors(name, date_of_birth, CPF, phone, previews_CPF = None):
     errors = {}
 
     if (name == "" or date_of_birth == "" or CPF == "" or phone == ""):
@@ -151,8 +206,9 @@ def get_errors(name, date_of_birth, CPF, phone):
     if (CPF != "" and is_cpf_valid(CPF) == False):
         errors["invalid_cpf"] = "CPF inválido!"
         
-        
-    if(len(Patient.objects.filter(CPF = CPF)) != 0):
+      
+    is_cpf_available = len(Patient.objects.filter(CPF = CPF)) == 0 or CPF == previews_CPF
+    if(not is_cpf_available):
         errors["repeated_cpf"] = "CPF já previamente cadastrado no sistema!"
   
     return errors 

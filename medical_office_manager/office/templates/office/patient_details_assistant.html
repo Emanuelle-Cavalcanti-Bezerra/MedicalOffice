@@ -4,12 +4,12 @@
 
 <div class="container-fluid text-center display:block">
     <br>
-    <p><strong>REGISTRAR PACIENTE</strong></p>
+    <p><strong>DETALHES DO PACIENTE</strong></p>
     <br>
 </div>
 
         
-<form  method="POST">
+<form action="edit_patient/{{ patient.id }}"method="POST">
     {% csrf_token %}
 
     <div class="container-fluid text-center display:block">
@@ -33,21 +33,20 @@
         {% endif %}
 
         
-        Nome: <input type="text" name="name">
+        Nome: <input type="text" name="name" value="{{patient.name}}">
         <br><br>
-        Data de nascimento: <input type="date" name="date_of_birth">
+        Data de nascimento: <input type="date" name="date_of_birth" value="{{birth_date}}">
         <br><br>        
-        CPF: <input type="text" name="CPF">
+        CPF: <input type="text" name="CPF" value="{{patient.CPF}}">
         <br><br>        
-        Telefone: <input type="text" name="phone">
+        Telefone: <input type="text" name="phone" value="{{patient.phone}}">
         <br><br>
 
         &emsp;&emsp;
         <button type="submit">Editar</button>
         &emsp;&emsp;
-        <button type="submit" onclick="window.location='{% url 'office:list_patients_assistant'%}'; return false;" >Cancelar</button>
+        <button type="submit" onclick="window.location='{% url 'office:list_patients_assistant'%}'; return false;" >Voltar</button>
     </div>
 </form>
 
 {% endblock %}
-
