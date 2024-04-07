@@ -10,6 +10,8 @@ urlpatterns = [
     path('list_patients_assistant/', views.list_patients_for_assistant, name = 'list_patients_assistant'),
     path('list_patients_doctor/', views.list_patients_for_doctor, name = 'list_patients_doctor'),
     path('register_patient/', views.register_patient, name = 'register_patient'),
+    path('patient_details_doctor/<int:patient_id>/', views.patient_details_doctor, name = 'patient_details_doctor'),
+    path('patient_medical_record/<int:patient_id>/', views.patient_medical_record, name = 'patient_medical_record'),
     path('patient_details_assistant/<int:patient_id>/', views.patient_details_assistant, name = 'patient_details_assistant'),
     path('patient_details_assistant/<int:patient_id>/edit_patient/<int:patient_id2>', views.edit_patient, name = 'edit_patient'),
 ]

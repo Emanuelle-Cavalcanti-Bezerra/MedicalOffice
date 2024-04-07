@@ -9,7 +9,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField(null = True, blank = True)
     CPF = models.CharField(max_length = 11, null = True)
     phone = models.CharField(max_length = 200, null = True)
-        
+            
     class Meta:
         ordering = ['name']
     
