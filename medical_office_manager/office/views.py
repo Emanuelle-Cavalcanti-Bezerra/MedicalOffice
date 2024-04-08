@@ -62,6 +62,34 @@ def list_patients_for_assistant(request):
 
 
 @login_required
+@doctor_required
+def patient_details_doctor(request: HttpRequest, patient_id):
+    patient = Patient.objects.filter(id=patient_id)[0]
+    
+    birth_date = format_date(patient.date_of_birth)
+
+    context = {'patient': patient,
+               'birth_date': birth_date}
+    
+    return render(request, 'office/patient_details_doctor.html', context)
+
+
+@login_required
+@doctor_required
+def patient_medical_record(request: HttpRequest, patient_id):
+    patient = Patient.objects.filter(id=patient_id)[0]
+    
+    birth_date = format_date(patient.date_of_birth)
+    
+    # TODO: pegar prontuário no banco de dados e passar pro conexto para ser exibido no template
+
+    context = {'patient': patient,
+               'birth_date': birth_date}
+    
+    return render(request, 'office/patient_medical_record.html', context)
+
+
+@login_required
 @assistant_required
 def register_patient(request):
     
@@ -104,40 +132,11 @@ def patient_details_assistant(request: HttpRequest, patient_id):
     context = {'patient': patient,
                'birth_date': birth_date}
     
-    return render(request, 'office/patient_details_assistant.html', context)
-
-
-@login_required
-@doctor_required
-def patient_details_doctor(request: HttpRequest, patient_id):
-    patient = Patient.objects.filter(id=patient_id)[0]
-    
-    birth_date = format_date(patient.date_of_birth)
-
-    context = {'patient': patient,
-               'birth_date': birth_date}
-    
-    return render(request, 'office/patient_details_doctor.html', context)
-
-
-@login_required
-@doctor_required
-def patient_medical_record(request: HttpRequest, patient_id):
-    patient = Patient.objects.filter(id=patient_id)[0]
-    
-    birth_date = format_date(patient.date_of_birth)
-    
-    # TODO: pegar prontuário no banco de dados e passar pro conexto para ser exibido no template
-
-    context = {'patient': patient,
-               'birth_date': birth_date}
-    
-    return render(request, 'office/patient_medical_record.html', context)
-    
+    return render(request, 'office/patient_details_assistant.html', context)   
 
 @login_required
 @assistant_required
-def edit_patient(request, patient_id, patient_id2):
+def edit_patient(request: HttpRequest, patient_id):
     if(request.method == "POST"):
         post_data = request.POST
         
@@ -177,13 +176,34 @@ def edit_patient(request, patient_id, patient_id2):
             
             return redirect('office:list_patients_assistant')
                               
-    return render(request, 'office/edit_patient.html')
+    return render(request, 'office/patient_details_assistant.html')
  
  
 @login_required
 @assistant_required
-def delete_patient(request, patient_id): 
-    pass
+def delete_patient(request: HttpRequest, patient_id): 
+    print("patient id: " + str(patient_id))
+    patient = Patient.objects.filter(id=patient_id)[0]
+    #patient = Patient.objects.all()[patient_id]
+    #patient = Patient.objects.get(id=patient_id)
+        
+    context = {'patient': patient}
+    
+      
+    return render(request, 'office/delete_patient.html', context)
+
+@login_required
+@assistant_required    
+def patient_successfully_deleted(request: HttpRequest, patient_id):
+    
+    patient = Patient.objects.filter(id=patient_id)[0]
+    
+    context = {'patient': patient}
+    
+    patient.delete()
+    
+    return render(request, 'office/patient_successfully_deleted.html', context)
+
 
 def is_cpf_valid(cpf: str):
     result = False
