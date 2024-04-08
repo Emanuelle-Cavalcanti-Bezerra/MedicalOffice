@@ -32,8 +32,9 @@ Emanuelle Cavalcanti Bezerra
 
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
-#### ![Medical Office - Jira Backlog SPRINT 1 - PRINT TODO!!!]() ABRIR NOVA SPRINT 2 DEPOIS DO PRINT DA SPRINT 1
+#### ![Medical Office - Jira Backlog SPRINT 1 - PRINT TODO!!!]() 
 #### ![Medical Office - Jira Painel  SPRINT 1 - PRINT TODO!!!]()
+#### ABRIR NOVA SPRINT 2 (com 3 stories prototipadas p/implementar) DEPOIS DO PRINT DA SPRINT 1
 
 ### Diagrama de atividades do sistema
 #### ![Assistente: PRINT TODO!!!]()
