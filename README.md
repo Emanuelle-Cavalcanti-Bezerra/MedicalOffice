@@ -31,20 +31,25 @@ Emanuelle Cavalcanti Bezerra
 
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
-#### ![Medical Office - Jira Backlog SPRINT 1 - PRINT TODO!!!]() 
-#### ![Medical Office - Jira Painel  SPRINT 1 - PRINT TODO!!!]()
-#### ABRIR NOVA SPRINT 2 (com 3 stories prototipadas p/implementar) DEPOIS DO PRINT DA SPRINT 1
+#### Estado final da Sprint 1:
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/7720dfde-32ac-470e-bd4a-92ab68abe5e9)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/f6c3bd08-e6c2-4ed9-a673-d6a0440b11b7)
+
+ 
+#### Sprint 2 iniciada. 
+#### Serão implementadas 3 stories entre as que constam na sprint 2, havendo 3 não iniciadas e 1 em implementação no início na sprint atual.
 
 ### Diagrama de atividades do sistema
-#### ![Assistente: PRINT TODO!!!]()
-#### ![Médico: PRINT TODO!!!]()
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/8dd9a6d4-f0a2-42d9-9a6a-d5e8ec523592)
+
 
 ### GitHub - Issue/bug tracker
-#### ![PRINT TODO!!!]()
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/22417c27-dc22-4ff7-8fd9-747bf0a6ea8d)
 
 ### Site 
 #### https://medical-office-manager.azurewebsites.net/
-#### Instruções de acesso: TODO!!!
+#### Instruções de acesso:  
+###### Para acessar o sistema, utilizar os usuários e respectivas senhas que seguem abaixo para realizar o login.
 #### Usuários cadastrados para teste:
 ###### usuário: assistente1; senha: yo10riohTM
 ###### usuário: medico1; senha: V1Zs7W2QoN
