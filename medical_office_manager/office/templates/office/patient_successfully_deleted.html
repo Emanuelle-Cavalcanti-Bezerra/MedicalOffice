@@ -1,0 +1,15 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>Paciente {{patient.name}} (CPF: {{patient.CPF}}) foi deletado com sucesso.</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    <button type="submit" onclick="window.location='{% url 'office:list_patients_assistant'%}'; return false;" >Voltar para lista de pacientes</button>
+</div>
+
+{% endblock %}

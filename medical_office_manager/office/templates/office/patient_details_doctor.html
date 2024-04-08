@@ -21,7 +21,9 @@
     <br><br>
 
     <button type="submit" onclick="window.location='{% url 'office:patient_medical_record' patient_id=patient.id%}'; return false;" >Ver prontuário</button>
+
     &emsp;&emsp;
+    
     <button type="submit" onclick="window.location='{% url 'office:list_patients_doctor'%}'; return false;" >Voltar</button>
 </div>
 

@@ -7,9 +7,8 @@
     <p><strong>DETALHES DO PACIENTE</strong></p>
     <br>
 </div>
-
         
-<form action="edit_patient/{{ patient.id }}" method="POST">
+<form action='{% url 'office:edit_patient' patient_id=patient.id%}' method="POST">
     {% csrf_token %}
 
     <div class="container-fluid text-center display:block">
@@ -43,9 +42,16 @@
         <br><br>
 
         &emsp;&emsp;
-        <button type="submit">Editar</button>
+
+        <button type="submit" >Editar</button>
+
         &emsp;&emsp;
-        <button type="submit" onclick="window.location='{% url 'office:list_patients_assistant'%}'; return false;" >Voltar</button>
+
+        <button onclick="window.location='{% url 'office:delete_patient' patient_id=patient.id%}'; return false;" >Deletar</button>
+
+        &emsp;&emsp;
+
+        <button onclick="window.location='{% url 'office:list_patients_assistant'%}'; return false;" >Voltar</button>
     </div>
 </form>
 

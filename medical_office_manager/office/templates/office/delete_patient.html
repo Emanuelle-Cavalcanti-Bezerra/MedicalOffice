@@ -1,0 +1,30 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>DELETAR PACIENTE</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    Nome: {{patient.name}}
+    <br>
+    CPF: {{patient.CPF}}
+    <br><br> 
+</div>
+     
+<div class="container-fluid text-center display:block">
+    Tem certeza que quer deletar este paciente do sistema?
+</div>
+
+<br><br>
+<div class="container-fluid text-center display:block">
+    
+    <button type="submit" onclick="window.location='{% url 'office:patient_successfully_deleted' patient_id=patient.id%}'; return false;" >Confirmar</button>
+    &emsp;&emsp;
+    <button type="submit" onclick="window.location='{% url 'office:patient_details_assistant' patient_id=patient.id%}'; return false;" >Cancelar</button>
+</div>
+
+{% endblock %}
