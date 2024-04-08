@@ -26,11 +26,23 @@
             <li class="nav-item" >
               <a class="nav-link active" aria-current="page" href="{% url 'office:home_assistant' %} " style = "color: grey"><b>Início</b></a>
             </li>&emsp;&emsp;
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'office:register_patient' %}" style = "color: grey"><b>Cadastrar Paciente</b></a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <b>Pacientes</b>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'office:register_patient' %}" style = "color: grey">Cadastrar Paciente</a></li>
+                <li><a class="dropdown-item" href="{% url 'office:list_patients_assistant' %}" style = "color: grey">Listar Pacientes</a></li>
+              </ul>
             </li>&emsp;&emsp;
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'office:list_patients_assistant' %}" style = "color: grey"><b>Listar Pacientes</b></a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <b>Consultas</b>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" style = "color: grey">Agendar consulta</a></li>
+                <li><a class="dropdown-item" href="#" style = "color: grey">Ver consultas</a></li>
+              </ul>
             </li>
           </ul>
           <span class="navbar-text" style = "color: grey"><b>Olá, {{user.username}}</b>
