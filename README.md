@@ -54,7 +54,7 @@ Emanuelle Cavalcanti Bezerra
 ###### usuário: assistente1; senha: yo10riohTM
 ###### usuário: medico1; senha: V1Zs7W2QoN
 
-#### Screencast do site - TODO!!!
+#### Screencast do site - https://youtu.be/wYHaXMh8elY
 
 </details>
 
