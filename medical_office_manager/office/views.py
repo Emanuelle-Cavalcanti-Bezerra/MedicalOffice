@@ -80,11 +80,13 @@ def patient_medical_record(request: HttpRequest, patient_id):
     patient = Patient.objects.filter(id=patient_id)[0]
     
     birth_date = format_date(patient.date_of_birth)
+   
+    medical_record_entries = patient.medicalrecordentry_set.all()
     
-    # TODO: pegar prontuário no banco de dados e passar pro conexto para ser exibido no template
-
     context = {'patient': patient,
-               'birth_date': birth_date}
+               'birth_date': birth_date,
+               'medical_record_entries': medical_record_entries
+               }
     
     return render(request, 'office/patient_medical_record.html', context)
 

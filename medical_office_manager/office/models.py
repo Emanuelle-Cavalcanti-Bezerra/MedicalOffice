@@ -16,5 +16,20 @@ class Patient(models.Model):
     def __str__(self):
         return f'{self.name} ({self.CPF})'
     
+            
+class Appointment(models.Model):
+    date = models.DateField(null = True, blank = True)
+    time = models.TimeField(null = True, blank = True)
+    patient = models.ForeignKey(Patient, on_delete = models.DO_NOTHING, null = True)
     
-        
+    class Meta:
+        ordering = ['time']
+    
+    def __str__(self):
+        return f'{self.date} - {self.time}: {self.patient}'
+    
+    
+class MedicalRecordEntry(models.Model):
+    content = models.CharField(max_length = 2000, null = True)
+    appointment = models.ForeignKey(Appointment, on_delete = models.SET_NULL, null = True)
+    patient = models.ForeignKey(Patient, on_delete = models.SET_NULL, null = True)

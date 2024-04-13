@@ -12,21 +12,20 @@
     Nome: {{patient.name}}
     <br>
     Data de nascimento: {{birth_date}}
-    <br><br> 
+    <br>
 </div>
      
-<div>
-    <!--
-        TODO: exibir prontuário enviado pela view através do contexto
-    -->
-    DD/MM/AAAA<br>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae provident ullam cumque animi excepturi nostrum eius, sint incidunt eum rem! Porro natus incidunt repellendus repudiandae nesciunt laboriosam maxime nobis deleniti.
-
+<div class="container-fluid">
     <br><br>
-
-    DD/MM/AAAA<br>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, laudantium! A amet itaque tempore, consequuntur nobis et harum repellat vero deserunt corporis voluptate ratione voluptatem, veritatis necessitatibus dolor libero! Hic?
-
+    {%for medical_record_entry in medical_record_entries%}
+        <tr>
+            {{medical_record_entry.appointment.date}}
+            <br>
+            {{medical_record_entry.content}}
+        </tr>
+        <br><br>
+    {% endfor %}
+    
 </div>
 
 <br><br>
