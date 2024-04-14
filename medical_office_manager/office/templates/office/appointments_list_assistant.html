@@ -26,9 +26,12 @@
         <table>
             <tr>
                 <td style = "border: none; vertical-align: text-top">
+                    <form action = '{% url 'office:appointments_list_assistant'%}' method="POST">
+                        {% csrf_token %}
                     <input type="date" name="appointment_date">
                     <br><br>
-                    <input type="submit">
+                    <button type="submit">Buscar</button>
+                    </form>
                 </td>
 
 

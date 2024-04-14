@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from .models import Patient, Appointment, MedicalRecordEntry
@@ -209,8 +210,13 @@ def patient_successfully_deleted(request: HttpRequest, patient_id):
 @login_required
 @assistant_required    
 def appointments_list_assistant(request: HttpRequest):
+    date_filter = datetime.date.today()
     
-    appointments = Appointment.objects.filter(date="2024-04-25")
+    if(request.method == "POST"):
+        post_data = request.POST
+        date_filter = post_data.get('appointment_date')
+    
+    appointments = Appointment.objects.filter(date=date_filter)
     
     template_appointments = []
     for index in range(8,17):
@@ -226,11 +232,10 @@ def appointments_list_assistant(request: HttpRequest):
         
         template_appointments.append(template_appointment)
     
-    date = "25/04/2024"
-           
+          
     context = {
         'appointments': template_appointments,
-        'date': date
+        'date': format_date(date_filter)
     }
     
     return render(request, 'office/appointments_list_assistant.html', context)
