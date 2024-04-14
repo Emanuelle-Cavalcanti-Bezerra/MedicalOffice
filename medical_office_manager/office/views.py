@@ -239,7 +239,8 @@ def appointments_list_assistant(request: HttpRequest):
           
     context = {
         'appointments': template_appointments,
-        'date': format_date(date_filter)
+        'date': format_date(date_filter),
+        'date_default': str(date_filter)
     }
     
     return render(request, 'office/appointments_list_assistant.html', context)
@@ -276,7 +277,8 @@ def appointments_list_doctor(request: HttpRequest):
           
     context = {
         'appointments': template_appointments,
-        'date': format_date(date_filter)
+        'date': format_date(date_filter),
+        'date_default': str(date_filter)
     }
     
     return render(request, 'office/appointments_list_doctor.html', context)

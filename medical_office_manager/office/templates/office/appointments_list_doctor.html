@@ -28,7 +28,7 @@
                 <td style = "border: none; vertical-align: text-top">
                     <form action = '{% url 'office:appointments_list_doctor'%}' method="POST">
                         {% csrf_token %}
-                    <input type="date" name="appointment_date">
+                    <input type="date" name="appointment_date" value = "{{date_default}}">
                     <br><br>
                     <button type="submit">Buscar</button>
                     </form>
