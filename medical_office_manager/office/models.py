@@ -23,7 +23,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete = models.DO_NOTHING, null = True)
     
     class Meta:
-        ordering = ['time']
+        ordering = ['date', 'time']
     
     def __str__(self):
         return f'{self.date} - {self.time} - {self.patient}'

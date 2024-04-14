@@ -207,6 +207,7 @@ def patient_successfully_deleted(request: HttpRequest, patient_id):
     
     return render(request, 'office/patient_successfully_deleted.html', context)
 
+
 @login_required
 @assistant_required    
 def appointments_list_assistant(request: HttpRequest):
@@ -239,6 +240,40 @@ def appointments_list_assistant(request: HttpRequest):
     }
     
     return render(request, 'office/appointments_list_assistant.html', context)
+
+
+@login_required
+@doctor_required    
+def appointments_list_doctor(request: HttpRequest):
+    date_filter = datetime.date.today()
+    
+    if(request.method == "POST"):
+        post_data = request.POST
+        date_filter = post_data.get('appointment_date')
+    
+    appointments = Appointment.objects.filter(date=date_filter)
+    
+    template_appointments = []
+    for index in range(8,17):
+        template_appointment = []
+        for appointment in appointments:
+            appointment_hour = str(int(str(appointment.time).split(":")[0]))
+            
+            if (appointment_hour == str(index)):
+                template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
+                break
+            else:
+                template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        
+        template_appointments.append(template_appointment)
+    
+          
+    context = {
+        'appointments': template_appointments,
+        'date': format_date(date_filter)
+    }
+    
+    return render(request, 'office/appointments_list_doctor.html', context)
     
 
 def is_cpf_valid(cpf: str):

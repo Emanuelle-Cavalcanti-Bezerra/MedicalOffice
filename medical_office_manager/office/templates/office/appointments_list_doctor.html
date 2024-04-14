@@ -1,4 +1,4 @@
-{% extends "office/base_doctor.html" %}
+{% extends "office/base_assistant.html" %}
 
 {% block content %}
 <style>
@@ -26,7 +26,7 @@
         <table>
             <tr>
                 <td style = "border: none; vertical-align: text-top">
-                    <form action = '{% url 'office:appointments_list_assistant'%}' method="POST">
+                    <form action = '{% url 'office:appointments_list_doctor'%}' method="POST">
                         {% csrf_token %}
                     <input type="date" name="appointment_date">
                     <br><br>

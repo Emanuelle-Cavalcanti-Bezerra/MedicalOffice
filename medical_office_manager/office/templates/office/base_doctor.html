@@ -28,9 +28,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'office:list_patients_doctor' %}" style = "color: grey"><b>Listar Pacientes</b></a>
               </li>&emsp;&emsp;
-              <li class="nav-item">
-                <a class="nav-link" href="#" style = "color: grey"><b>Consultas</b></a>
-              </li>
+              <li class="nav-item" >
+                <a class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_doctor' %} " style = "color: grey"><b>Consultas</b></a>
+              </li>&emsp;&emsp;
             </ul>
             <span class="navbar-text" style = "color: grey"><b>Olá, {{user.username}}</b>
               
