@@ -1,0 +1,65 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td, th {
+        border: 1px solid #ffe6d7;
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #ffe6d7;
+    }
+</style>
+    
+<br> 
+
+<div class="container-fluid text-center display:block">
+    <div>
+        <table>
+            <tr>
+                <td style = "border: none; vertical-align: text-top">
+                    <input type="date" name="appointment_date">
+                    <br><br>
+                    <input type="submit">
+                </td>
+
+
+                <td>
+                    <table>
+                        <tr>
+                            <th style = "border: none">CONSULTAS - {{date}}</th>
+                        </tr>
+                        <tr>
+                            <th>Horários</th>
+                            <th>Paciente</th>
+                        </tr>
+                       
+                        {% for appointment in appointments%}                
+                            <tr>
+                                <td>
+                                    {{appointment.0}}
+                                </td>
+                                
+                                <td>
+                                    {{appointment.1}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
-from .models import Patient
+from .models import Patient, Appointment, MedicalRecordEntry
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import Q
@@ -206,6 +206,35 @@ def patient_successfully_deleted(request: HttpRequest, patient_id):
     
     return render(request, 'office/patient_successfully_deleted.html', context)
 
+@login_required
+@assistant_required    
+def appointments_list_assistant(request: HttpRequest):
+    
+    appointments = Appointment.objects.filter(date="2024-04-25")
+    
+    template_appointments = []
+    for index in range(8,17):
+        template_appointment = []
+        for appointment in appointments:
+            appointment_hour = str(int(str(appointment.time).split(":")[0]))
+            
+            if (appointment_hour == str(index)):
+                template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
+                break
+            else:
+                template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        
+        template_appointments.append(template_appointment)
+    
+    date = "25/04/2024"
+           
+    context = {
+        'appointments': template_appointments,
+        'date': date
+    }
+    
+    return render(request, 'office/appointments_list_assistant.html', context)
+    
 
 def is_cpf_valid(cpf: str):
     result = False

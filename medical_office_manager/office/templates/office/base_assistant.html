@@ -35,15 +35,9 @@
                 <li><a class="dropdown-item" href="{% url 'office:list_patients_assistant' %}" style = "color: grey">Listar Pacientes</a></li>
               </ul>
             </li>&emsp;&emsp;
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <b>Consultas</b>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#" style = "color: grey">Agendar consulta</a></li>
-                <li><a class="dropdown-item" href="#" style = "color: grey">Ver consultas</a></li>
-              </ul>
-            </li>
+            <li class="nav-item" >
+              <a class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_assistant' %} " style = "color: grey"><b>Consultas</b></a>
+            </li>&emsp;&emsp;
           </ul>
           <span class="navbar-text" style = "color: grey"><b>Olá, {{user.username}}</b>
             
