@@ -222,14 +222,17 @@ def appointments_list_assistant(request: HttpRequest):
     template_appointments = []
     for index in range(8,17):
         template_appointment = []
-        for appointment in appointments:
-            appointment_hour = str(int(str(appointment.time).split(":")[0]))
-            
-            if (appointment_hour == str(index)):
-                template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
-                break
-            else:
-                template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        if (len(appointments) == 0):
+            template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        else: 
+            for appointment in appointments:
+                appointment_hour = str(int(str(appointment.time).split(":")[0]))
+                
+                if (appointment_hour == str(index)):
+                    template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
+                    break
+                elif (appointment_hour != str(index)):
+                    template_appointment = [f'{index}:00', "DISPONÍVEL"]
         
         template_appointments.append(template_appointment)
     
@@ -256,14 +259,17 @@ def appointments_list_doctor(request: HttpRequest):
     template_appointments = []
     for index in range(8,17):
         template_appointment = []
-        for appointment in appointments:
-            appointment_hour = str(int(str(appointment.time).split(":")[0]))
-            
-            if (appointment_hour == str(index)):
-                template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
-                break
-            else:
-                template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        if (len(appointments) == 0):
+            template_appointment = [f'{index}:00', "DISPONÍVEL"]
+        else: 
+            for appointment in appointments:
+                appointment_hour = str(int(str(appointment.time).split(":")[0]))
+                
+                if (appointment_hour == str(index)):
+                    template_appointment = [f'{index}:00', appointment.patient.name, appointment.id]
+                    break
+                elif (appointment_hour != str(index)):
+                    template_appointment = [f'{index}:00', "DISPONÍVEL"]
         
         template_appointments.append(template_appointment)
     
