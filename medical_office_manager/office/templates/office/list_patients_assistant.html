@@ -25,6 +25,15 @@
     <div class="container-fluid text-center display:block">
         <p><strong>LISTA DE PACIENTES</strong></p>
         <br>
+
+        <form action='{% url 'office:list_patients_assistant'%}' method="GET">
+            
+            <input type="text" name = "patient_filtered" placeholder = "Digite nome ou CPF">
+            <input type="submit" value = "Buscar">
+
+        </form>
+
+        <br>
         <p>Clique em um paciente para ver e ou editar seus dados.</p>
         <br>
 
