@@ -43,10 +43,17 @@ def home_assistant(request):
 @login_required
 @doctor_required
 def list_patients_for_doctor(request):
-   
-    patients = {
-        'patients': Patient.objects.all()
-    }
+    patient_filtered = request.GET.get('patient_filtered')
+    patients = None
+    
+    if patient_filtered:
+        patients = {
+            'patients': Patient.objects.filter(CPF = patient_filtered) | Patient.objects.filter(name__icontains = patient_filtered)
+        }
+    else:   
+        patients = {
+            'patients': Patient.objects.all()
+        }
       
     return render(request, 'office/list_patients_doctor.html', context = patients)
 
@@ -54,10 +61,17 @@ def list_patients_for_doctor(request):
 @login_required
 @assistant_required
 def list_patients_for_assistant(request):
-   
-    patients = {
-        'patients': Patient.objects.all()
-    }
+    patient_filtered = request.GET.get('patient_filtered')
+    patients = None
+    
+    if patient_filtered:
+        patients = {
+            'patients': Patient.objects.filter(CPF = patient_filtered) | Patient.objects.filter(name__icontains = patient_filtered)
+        }
+    else:   
+        patients = {
+            'patients': Patient.objects.all()
+        }
       
     return render(request, 'office/list_patients_assistant.html', context = patients)
 
