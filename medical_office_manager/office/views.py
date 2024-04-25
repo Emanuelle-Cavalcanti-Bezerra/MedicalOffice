@@ -113,10 +113,10 @@ def register_patient(request):
     if(request.method == "POST"):
         post_data = request.POST
         
-        name = post_data.get('name')
+        name = post_data.get('name').strip()
         date_of_birth = post_data.get('date_of_birth')
-        CPF = post_data.get('CPF')
-        phone = post_data.get('phone')
+        CPF = post_data.get('CPF').strip().replace(".", "").replace("-", "")
+        phone = post_data.get('phone').strip()
         
         errors = get_errors(name, date_of_birth, CPF, phone)
         has_errors = len(errors) != 0
@@ -301,6 +301,8 @@ def appointments_list_doctor(request: HttpRequest):
 def is_cpf_valid(cpf: str):
     result = False
     
+    cpf = cpf.strip().replace(".", "").replace("-", "")
+
     if (len(cpf) == 11):
 
         digitos = [int(char_digit) for char_digit in cpf]
@@ -356,7 +358,7 @@ def format_date(date):
 def get_errors(name, date_of_birth, CPF, phone, previews_CPF = None):
     errors = {}
 
-    if (name.strip() == "" or date_of_birth == "" or CPF.strip() == "" or phone.strip() == ""):
+    if (name == "" or date_of_birth == "" or CPF == "" or phone == ""):
         errors["empty_fields"] = "Preencha todos os campos obrigatórios!"
         
     
