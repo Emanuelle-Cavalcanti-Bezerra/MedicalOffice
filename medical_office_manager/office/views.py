@@ -300,7 +300,7 @@ def appointments_list_doctor(request: HttpRequest):
 
 def is_cpf_valid(cpf: str):
     result = False
-
+    
     if (len(cpf) == 11):
 
         digitos = [int(char_digit) for char_digit in cpf]
@@ -356,7 +356,7 @@ def format_date(date):
 def get_errors(name, date_of_birth, CPF, phone, previews_CPF = None):
     errors = {}
 
-    if (name == "" or date_of_birth == "" or CPF == "" or phone == ""):
+    if (name.strip() == "" or date_of_birth == "" or CPF.strip() == "" or phone.strip() == ""):
         errors["empty_fields"] = "Preencha todos os campos obrigatórios!"
         
     
