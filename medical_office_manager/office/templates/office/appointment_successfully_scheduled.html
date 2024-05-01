@@ -1,0 +1,18 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>CONSULTA AGENDADA COM SUCESSO!</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    <p><strong>Data: {{date}}</strong></p>
+    <p><strong>Hora: {{time}}</strong></p>
+    <p><strong>Paciente: {{patient.name}} (CPF {{patient.CPF}})</strong></p>
+    <br>
+</div>
+
+{% endblock %}
