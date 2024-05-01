@@ -43,6 +43,7 @@
                         <tr>
                             <th>Horários</th>
                             <th>Paciente</th>
+                            <th></th>
                         </tr>
                        
                         {% for appointment in appointments%}                
@@ -54,6 +55,19 @@
                                 <td>
                                     {{appointment.1}}
                                 </td>
+                                
+                                <td>
+                                    {%if appointment.1 == "DISPONÍVEL"%}
+
+                                        <button onclick="window.location='{% url 'office:schedule_appointment' date_time=date_default|add:' '|add:appointment.0 %}'; return false;" style="width:110px">Agendar</button>
+
+                                    {%else%}
+                                        <button type="submit" style="width:110px"   onclick= "">Desmarcar</button>
+
+                                    {%endif%}
+                                    
+                                </td>
+                              
                             </tr>
                         {% endfor %}
                     </table>

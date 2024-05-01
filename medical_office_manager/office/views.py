@@ -249,8 +249,7 @@ def appointments_list_assistant(request: HttpRequest):
                     template_appointment = [f'{index}:00', "DISPONÍVEL"]
         
         template_appointments.append(template_appointment)
-    
-          
+             
     context = {
         'appointments': template_appointments,
         'date': format_date(date_filter),
@@ -287,8 +286,7 @@ def appointments_list_doctor(request: HttpRequest):
                     template_appointment = [f'{index}:00', "DISPONÍVEL"]
         
         template_appointments.append(template_appointment)
-    
-          
+        
     context = {
         'appointments': template_appointments,
         'date': format_date(date_filter),
@@ -296,7 +294,34 @@ def appointments_list_doctor(request: HttpRequest):
     }
     
     return render(request, 'office/appointments_list_doctor.html', context)
+
+
+@login_required
+@assistant_required    
+def schedule_appointment(request, date_time):
+    date = date_time.split(" ")[0]
+    time = date_time.split(" ")[1]
+    patients = Patient.objects.all()
+    patient_selected = None
+       
+    context = {
+        'date': format_date(date),
+        'time': time,
+        'patients': patients,
+        'patient_selected': patient_selected
+    }
+        
+    return render(request, 'office/schedule_appointment.html', context)  
+
+
+@login_required
+@assistant_required 
+def appointment_successfully_scheduled(request):
     
+    context = {}
+    
+    return render(request, 'office/appointment_successfully_scheduled.html', context)
+     
 
 def is_cpf_valid(cpf: str):
     result = False
