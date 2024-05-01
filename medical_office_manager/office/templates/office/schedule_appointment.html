@@ -9,27 +9,28 @@
 </div>
 
 <div class="container-fluid text-center display:block">
-    <p><strong>Data: {{date}}</strong></p>
+    <p><strong>Data: {{date_display}}</strong></p>
     <p><strong>Hora: {{time}}</strong></p>
     <br>
 </div>
 
 <div class="container-fluid text-center display:block">
-    <form action="" method="POST">
+    <form action="{% url 'office:appointment_successfully_scheduled' date_time=date_url|add:' '|add:time %}" method="POST">
         {% csrf_token %}
 
-        <label for="patients_to_be_selected">Selecione um paciente:</label>
+        <label for="patient_to_be_selected">Selecione um paciente:</label>
         <br><br>
-        <select id="patients_to_be_selected" name="patients_to_be_selected">
+        <select id="patient_to_be_selected" name="patient_to_be_selected">
             {% for patient in patients%}
-            <option value="{{patient.name}}">{{patient.name}} (CPF {{patient.CPF}})</option>
+            <option value={{patient.CPF}}>{{patient.name}}-{{patient.CPF}}</option>
             {% endfor %}
         </select>
-
-        <br><br>
         
-        <button onclick="window.location='{% url 'office:appointment_successfully_scheduled'%}'; return false;" style="width:110px">Confirmar</button>
+        <br><br>
+        <button type="submit" style="width:110px">Confirmar</button>
+        
         &emsp;&emsp;
+
         <button onclick="window.location='{% url 'office:appointments_list_assistant'%}'; return false;" style="width:110px">Voltar</button>
         
     </form>
