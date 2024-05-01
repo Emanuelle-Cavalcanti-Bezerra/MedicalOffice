@@ -305,20 +305,35 @@ def schedule_appointment(request, date_time):
     patient_selected = None
        
     context = {
-        'date': format_date(date),
+        'date_display': format_date(date),
+        'date_url': date,
         'time': time,
         'patients': patients,
-        'patient_selected': patient_selected
     }
-        
+            
     return render(request, 'office/schedule_appointment.html', context)  
 
 
 @login_required
 @assistant_required 
-def appointment_successfully_scheduled(request):
+def appointment_successfully_scheduled(request, date_time):
+    date = date_time.split(" ")[0]
+    time = date_time.split(" ")[1]
+    cpf = None
+        
+    if(request.method == "POST"):
+        post_data = request.POST
+        cpf = post_data.get('patient_to_be_selected')
+        
+    patient = Patient.objects.get(CPF=cpf)
     
-    context = {}
+    Appointment.objects.create(date = date, time=time, patient = patient)
+    
+    context = {
+        'date': format_date(date),
+        'time': time, 
+        'patient': patient
+    }
     
     return render(request, 'office/appointment_successfully_scheduled.html', context)
      
