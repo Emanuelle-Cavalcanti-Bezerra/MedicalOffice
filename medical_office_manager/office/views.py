@@ -345,9 +345,11 @@ def appointment_successfully_scheduled(request, date_time):
 @assistant_required 
 def unschedule_appointment(request, appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
+    is_future_date_time = (str(appointment.date) > str(datetime.date.today())) or ((str(appointment.date) == str(datetime.date.today())) and (str(appointment.time) > strftime("%H:%M:%S")))
     
     context = {
-        'appointment': appointment
+        'appointment': appointment,
+        'is_future_date_time': is_future_date_time
     }
        
     return render(request, 'office/unschedule_appointment.html', context)
