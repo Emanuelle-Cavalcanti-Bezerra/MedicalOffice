@@ -1,0 +1,34 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>DESMARCAR CONSULTA</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    <p><strong>Data: {{appointment.date}}</strong></p>
+    <p><strong>Hora: {{appointment.time}}</strong></p>
+    <p><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+
+        Tem certeza que deseja desmarcar a consulta deste paciente?
+        
+        
+        <br><br>
+        <button onclick="window.location='{% url 'office:unschedule_appointment_successfully' appointment_id=appointment.id  %}'; return false;" style="width:110px">Confirmar</button>
+        
+        &emsp;&emsp;
+
+        <button onclick="window.location='{% url 'office:appointments_list_assistant'%}'; return false;" style="width:110px">Cancelar</button>
+
+</div>
+
+
+
+{% endblock %}

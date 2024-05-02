@@ -1,0 +1,15 @@
+{% extends "office/base_assistant.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>CONSULTA DESMARCADA COM SUCESSO!</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    <button onclick="window.location='{% url 'office:appointments_list_assistant'%}'; return false;" >Voltar para visualização de consultas</button>
+</div>
+
+{% endblock %}
