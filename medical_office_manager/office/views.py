@@ -1,4 +1,5 @@
 import datetime
+from time import gmtime, strftime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from .models import Patient, Appointment, MedicalRecordEntry
@@ -234,7 +235,7 @@ def appointments_list_assistant(request: HttpRequest):
     appointments = Appointment.objects.filter(date=date_filter)
     
     template_appointments = []
-    for index in range(8,17):
+    for index in range(8,19):
         template_appointment = []
         if (len(appointments) == 0):
             template_appointment = [f'{index}:00', "DISPONÍVEL"]
@@ -271,7 +272,7 @@ def appointments_list_doctor(request: HttpRequest):
     appointments = Appointment.objects.filter(date=date_filter)
     
     template_appointments = []
-    for index in range(8,17):
+    for index in range(8,19):
         template_appointment = []
         if (len(appointments) == 0):
             template_appointment = [f'{index}:00', "DISPONÍVEL"]
@@ -302,13 +303,14 @@ def schedule_appointment(request, date_time):
     date = date_time.split(" ")[0]
     time = date_time.split(" ")[1]
     patients = Patient.objects.all()
-    patient_selected = None
-       
+    is_future_date_time = (date > str(datetime.date.today())) or ((date == str(datetime.date.today())) and (time > strftime("%H:%M:%S")))
+           
     context = {
         'date_display': format_date(date),
         'date_url': date,
         'time': time,
         'patients': patients,
+        'is_future_date_time': is_future_date_time
     }
             
     return render(request, 'office/schedule_appointment.html', context)  
@@ -346,21 +348,15 @@ def unschedule_appointment(request, appointment_id):
     context = {
         'appointment': appointment
     }
-    
-    print("****************************")
-    print(appointment.id)
-    
+       
     return render(request, 'office/unschedule_appointment.html', context)
+
 
 @login_required
 @assistant_required 
 def unschedule_appointment_successfully(request, appointment_id):
    
-    
-    print("@@@@@@@@@@@@@@@@@@@@@")
-    print(appointment_id)
-        
-       
+     
     appointment = Appointment.objects.get(id=appointment_id)
            
     context = {
