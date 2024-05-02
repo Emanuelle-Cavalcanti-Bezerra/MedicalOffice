@@ -8,6 +8,8 @@
     <br>
 </div>
 
+{%if is_future_date_time %}
+
 <div class="container-fluid text-center display:block">
     <p><strong>Data: {{appointment.date}}</strong></p>
     <p><strong>Hora: {{appointment.time}}</strong></p>
@@ -29,6 +31,16 @@
 
 </div>
 
+{% else%}
+
+<div class="container-fluid text-center display:block">
+    <p><strong>Não é possível desmarcar uma consulta de uma data e hora no passado!</strong></p>
+    <br>
+
+    <button onclick="window.location='{% url 'office:appointments_list_assistant' date=appointment.date%}'; return false;" style="width:110px">Voltar</button>
+</div>
+
+{% endif %}
 
 
 {% endblock %}
