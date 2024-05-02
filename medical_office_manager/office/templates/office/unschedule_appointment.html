@@ -25,7 +25,7 @@
         
         &emsp;&emsp;
 
-        <button onclick="window.location='{% url 'office:appointments_list_assistant'%}'; return false;" style="width:110px">Cancelar</button>
+        <button onclick="window.location='{% url 'office:appointments_list_assistant' date=appointment.date%}'; return false;" style="width:110px">Cancelar</button>
 
 </div>
 

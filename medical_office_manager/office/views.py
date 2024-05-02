@@ -225,8 +225,8 @@ def patient_successfully_deleted(request: HttpRequest, patient_id):
 
 @login_required
 @assistant_required    
-def appointments_list_assistant(request: HttpRequest):
-    date_filter = datetime.date.today()
+def appointments_list_assistant(request: HttpRequest, date):
+    date_filter = date
     
     if(request.method == "POST"):
         post_data = request.POST
@@ -262,8 +262,8 @@ def appointments_list_assistant(request: HttpRequest):
 
 @login_required
 @doctor_required    
-def appointments_list_doctor(request: HttpRequest):
-    date_filter = datetime.date.today()
+def appointments_list_doctor(request: HttpRequest, date):
+    date_filter = date
     
     if(request.method == "POST"):
         post_data = request.POST
@@ -333,6 +333,7 @@ def appointment_successfully_scheduled(request, date_time):
     
     context = {
         'date': format_date(date),
+        'date_url': date,
         'time': time, 
         'patient': patient
     }
