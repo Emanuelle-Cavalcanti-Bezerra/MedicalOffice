@@ -14,7 +14,7 @@
     <p><strong>Paciente: {{patient.name}} (CPF {{patient.CPF}})</strong></p>
     <br>
 
-    <button onclick="window.location='{% url 'office:appointments_list_assistant'%}'; return false;" >Voltar para visualização de consultas</button>
+    <button onclick="window.location='{% url 'office:appointments_list_assistant' date=date_url%}'; return false;" >Voltar para visualização de consultas</button>
 </div>
 
 {% endblock %}
