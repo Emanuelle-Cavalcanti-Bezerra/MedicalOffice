@@ -29,9 +29,9 @@
                     {% now "Y-m-d" as current_date%}
                     <form action = '{% url 'office:appointments_list_doctor' date=current_date%}' method="POST">
                         {% csrf_token %}
-                    <input type="date" name="appointment_date" value = "{{date_default}}">
-                    <br><br>
-                    <button type="submit">Buscar</button>
+                        <input type="date" name="appointment_date" value = "{{date_default}}">
+                        <br><br>
+                        <button type="submit">Buscar</button>
                     </form>
                 </td>
 
@@ -44,6 +44,7 @@
                         <tr>
                             <th>Horários</th>
                             <th>Paciente</th>
+                            <th></th>
                         </tr>
                        
                         {% for appointment in appointments%}                
@@ -54,6 +55,20 @@
                                 
                                 <td>
                                     {{appointment.1}}
+                                </td>
+
+                                <td>
+                                    {%if appointment.1 == "DISPONÍVEL"%}
+                                        
+                                            <p>--------------------<p>
+                                        
+
+                                    {%else%}
+                                        
+                                            <button onclick="window.location='{% url 'office:display_appointment_details' appointment_id=appointment.2 %}'; return false;" style="width:110px">Ver</button>
+                                        
+  
+                                    {%endif%}
                                 </td>
                             </tr>
                         {% endfor %}

@@ -9,9 +9,9 @@
 </div>
 
 <div class="container-fluid text-center display:block">
-    Nome: {{patient.name}}
+    <strong>Nome: {{patient.name}}</strong>
     <br>
-    Data de nascimento: {{birth_date}}
+    <strong>Data de nascimento: {{birth_date}}</strong>
     <br>
 </div>
      
@@ -19,7 +19,7 @@
     <br><br>
     {%for medical_record_entry in medical_record_entries%}
         <tr>
-            {{medical_record_entry.appointment.date}}
+            <strong>{{medical_record_entry.appointment.date}}</strong>
             <br>
             {{medical_record_entry.content}}
         </tr>
