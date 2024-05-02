@@ -1,0 +1,40 @@
+{% extends "office/base_doctor.html" %}
+
+{% block content %}
+
+<div class="container-fluid text-center display:block">
+    <br>
+    <p><strong>DETALHAMENTO DE CONSULTA</strong></p>
+    <br>
+</div>
+
+<div class="container-fluid text-center display:block">
+    <p><strong>Data: {{appointment.date}}</strong></p>
+    <p><strong>Hora: {{appointment.time}}</strong></p>
+    <p><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
+    <br>
+
+    {%if medical_record_entry|length == 0 %}
+        {%if is_future_date_time %}
+            <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
+                {% csrf_token %}
+                <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
+                <br>
+                <textarea name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
+                <br><br>
+                <button type="submit">Salvar</button>
+            </form>
+        {% else%}
+            DATA DA CONSULTA JÁ PASSOU. 
+            <br>
+            NÃO É POSSÍVEL ABRIR UMA NOVA ENTRADA DE PRONTUÁRIO.
+        {% endif %}
+    {% else%}
+        {{medical_record_entry.0.content}}
+    {% endif %}
+
+    <br><br>
+    <button onclick="window.location='{% url 'office:appointments_list_doctor' date=appointment.date%}'; return false;" >Voltar para visualização de consultas</button>
+</div>
+
+{% endblock %}
