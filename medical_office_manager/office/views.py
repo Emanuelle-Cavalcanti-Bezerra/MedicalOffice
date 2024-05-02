@@ -336,6 +336,40 @@ def appointment_successfully_scheduled(request, date_time):
     }
     
     return render(request, 'office/appointment_successfully_scheduled.html', context)
+
+
+@login_required
+@assistant_required 
+def unschedule_appointment(request, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id)
+    
+    context = {
+        'appointment': appointment
+    }
+    
+    print("****************************")
+    print(appointment.id)
+    
+    return render(request, 'office/unschedule_appointment.html', context)
+
+@login_required
+@assistant_required 
+def unschedule_appointment_successfully(request, appointment_id):
+   
+    
+    print("@@@@@@@@@@@@@@@@@@@@@")
+    print(appointment_id)
+        
+       
+    appointment = Appointment.objects.get(id=appointment_id)
+           
+    context = {
+        'appointment': appointment
+    }
+    
+    appointment.delete()
+    
+    return render(request, 'office/unschedule_appointment_successfully.html', context)
      
 
 def is_cpf_valid(cpf: str):
