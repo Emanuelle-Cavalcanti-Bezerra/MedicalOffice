@@ -374,32 +374,20 @@ def unschedule_appointment_successfully(request, appointment_id):
 @doctor_required 
 def display_appointment_details(request, appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
-    is_future_date_time = (str(appointment.date) > str(datetime.date.today())) or ((str(appointment.date) == str(datetime.date.today())) and (str(appointment.time) > strftime("%H:%M:%S")))
-    
+        
     medical_record_entry = appointment.medicalrecordentry_set.all()
-    
-    print("******************")
-    print(medical_record_entry)
-    #print(medical_record_entry[0].content)
     
     if(request.method == "POST"):
         post_data = request.POST
         new_medical_record_entry_content = post_data.get('new_medical_record_entry')
-        
-        print("&&&&&&&&&&&&&&&&&&&&&&")
-        print(new_medical_record_entry_content)
-        
+      
         MedicalRecordEntry.objects.create(content = new_medical_record_entry_content, appointment = appointment, patient = appointment.patient)
         
         medical_record_entry = appointment.medicalrecordentry_set.all()
         
-        print("@@@@@@@@@@@@@@@@@@@")
-        print(medical_record_entry)
-    
     context= {
         'appointment': appointment,
         'medical_record_entry': medical_record_entry,
-        'is_future_date_time': is_future_date_time
     }
     
     return render(request, 'office/display_appointment_details.html', context)
