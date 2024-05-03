@@ -1,0 +1,21 @@
+describe('test suite SeePatientMedicalRecord', () => {
+    it('Patient medical record is displayed clicking on patient CPF', () => {
+        cy.visit('/office/register_patient/');
+        cy.get('[name="username"]').type('assistente1')
+        cy.get('[name="password"]').type('fds20241')
+        cy.get(':nth-child(11)').click()
+        cy.get('[name="name"]').type('João Dantas')
+        cy.get('[type="date"]').type('2024-07-17')
+        cy.get('[name="CPF"]').type('023.670.160-62')
+        cy.get('[name="phone"]').type('35351587')
+        cy.get('[type="submit"]').click()
+        cy.get('#navbarTogglerDemo02 > :nth-child(3) > .nav-link > b').click()
+        cy.get('button').click()
+        cy.get('[name="username"]').type('medico1')
+        cy.get('[name="password"]').type('fds20241')
+        cy.get(':nth-child(11)').click()
+        cy.get(':nth-child(2) > .nav-link > b').click()
+        cy.contains('02367016062').click()
+        cy.contains('Ver prontuário').click()       
+    })
+})
