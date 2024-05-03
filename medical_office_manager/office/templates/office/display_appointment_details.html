@@ -15,20 +15,14 @@
     <br>
 
     {%if medical_record_entry|length == 0 %}
-        {%if is_future_date_time %}
-            <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
-                {% csrf_token %}
-                <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
-                <br>
-                <textarea name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
-                <br><br>
-                <button type="submit">Salvar</button>
-            </form>
-        {% else%}
-            DATA DA CONSULTA JÁ PASSOU. 
+        <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
+            {% csrf_token %}
+            <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
             <br>
-            NÃO É POSSÍVEL ABRIR UMA NOVA ENTRADA DE PRONTUÁRIO.
-        {% endif %}
+            <textarea name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
+            <br><br>
+            <button type="submit">Salvar</button>
+        </form>
     {% else%}
         {{medical_record_entry.0.content}}
     {% endif %}
