@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd medical_office_manager/
-          pip install -r medical_office_manager/requirements.txt
+          pip install -r requirements.txt
           npm ci
           cd ..
 
