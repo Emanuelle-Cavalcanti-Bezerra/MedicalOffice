@@ -11,7 +11,6 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('[name="password"]').type('fds20241')
         cy.get('#loginButton').click()
 
-/*
         // Ver prontuário de paciente (listagem de pacientes -> detalhes do paciente -> prontuário)
         cy.get('#listPatients').click()
         cy.contains('02367016062').click()
@@ -21,10 +20,8 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Verificar se prontuário foi renderizado corretamente
         cy.contains('PRONTUÁRIO DO PACIENTE').should('be.visible')  
         cy.contains('Nome: João Dantas').should('be.visible')      
-        cy.contains('Data de nascimento: 17/07/2024').should('be.visible')      
+        cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
         cy.contains('Voltar').should('be.visible')  
-*/
-       
     })
 /*    it('Patient medical record is displayed clicking on patient patient name on patients list', () => {      
         // Executar setup de preparação para o teste
