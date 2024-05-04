@@ -1,6 +1,6 @@
 import sqlite3 as sql
 
-dbpath = ".\\db.sqlite3"
+dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/db.sqlite3"
 
 def clear_all_data():
     connection = sql.connect(dbpath)
