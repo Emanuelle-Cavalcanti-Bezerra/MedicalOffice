@@ -1,7 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User, Group
 
 # Create your models here.
   
+class MyGroup(Group):
+    pass
+
+class MyUser(User):
+    pass
+
        
 class Patient(models.Model):
 

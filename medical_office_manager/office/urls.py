@@ -22,7 +22,8 @@ urlpatterns = [
     path('appointment_successfully_scheduled/<str:date_time>/', views.appointment_successfully_scheduled, name='appointment_successfully_scheduled'),
     path('unschedule_appointment/<int:appointment_id>/', views.unschedule_appointment, name = 'unschedule_appointment'),
     path('unschedule_appointment_successfully/<int:appointment_id>/', views.unschedule_appointment_successfully, name = 'unschedule_appointment_successfully'),
-    path('display_appointment_details/<int:appointment_id>/', views.display_appointment_details, name='display_appointment_details')
+    path('display_appointment_details/<int:appointment_id>/', views.display_appointment_details, name='display_appointment_details'),
+    path('register_user/', views.register_user, name='register_user')
     
-    
+ 
 ]
