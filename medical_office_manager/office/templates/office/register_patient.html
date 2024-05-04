@@ -15,21 +15,24 @@
     <div class="container-fluid text-center display:block">
 
         {% if errors.empty_fields %}
-            
-            <b>{{ errors.empty_fields }}</b></p>
-            <br>
+                <div class="alert alert-warning" role="alert">
+                    <b>{{ errors.empty_fields }}</b></p>
+                    <br>
+                </div>
         {% endif %}
 
         {% if errors.invalid_cpf %}
-            
-            <b>{{ errors.invalid_cpf }}</b></p>
-            <br>
+            <div class="alert alert-warning" role="alert">    
+                <b>{{ errors.invalid_cpf }}</b></p>
+                <br>
+            </div>
         {% endif %}
 
         {% if errors.repeated_cpf %}
-            
-            <b>{{ errors.repeated_cpf }}</b></p>
-            <br>
+            <div class="alert alert-warning" role="alert">    
+                <b>{{ errors.repeated_cpf }}</b></p>
+                <br>
+            </div>
         {% endif %}
 
         

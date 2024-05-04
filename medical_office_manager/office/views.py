@@ -2,7 +2,7 @@ import datetime
 from time import gmtime, strftime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
-from .models import Patient, Appointment, MedicalRecordEntry
+from .models import Patient, Appointment, MedicalRecordEntry, MyGroup, MyUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import Q
@@ -119,7 +119,7 @@ def register_patient(request):
         CPF = post_data.get('CPF').strip().replace(".", "").replace("-", "")
         phone = post_data.get('phone').strip()
         
-        errors = get_errors(name, date_of_birth, CPF, phone)
+        errors = get_errors_on_register_patient(name, date_of_birth, CPF, phone)
         has_errors = len(errors) != 0
                        
         if (has_errors):
@@ -166,7 +166,7 @@ def edit_patient(request: HttpRequest, patient_id):
         CPF = post_data.get('CPF')
         phone = post_data.get('phone')
         
-        errors = get_errors(name, date_of_birth, CPF, phone, previews_cpf)
+        errors = get_errors_on_register_patient(name, date_of_birth, CPF, phone, previews_cpf)
         has_errors = len(errors) != 0
                       
         if (has_errors):
@@ -391,7 +391,72 @@ def display_appointment_details(request, appointment_id):
     }
     
     return render(request, 'office/display_appointment_details.html', context)
-     
+
+
+def register_user(request):
+    
+    if(request.method == 'POST'):
+        nome = request.POST.get('username').strip()
+        email = request.POST.get('email').strip()
+        grupo_name = request.POST.get('grupo')
+        password = request.POST.get('password').strip()
+        cfpassword = request.POST.get('cfpassword').strip()
+        errors = {}
+        user = None
+        group = None
+        context = {}
+        
+        print("*******GROUP NAME*********")
+        print(grupo_name)
+        
+        if (nome == "" or email == "" or grupo_name == None or password == "" or cfpassword == ""):
+            errors['empty_fields'] = "Preencha todos os campos obrigatórios!"
+            print(errors['empty_fields'])
+        
+        elif(password != cfpassword):
+            errors.update({'senhas_nao_conferem': "senhas não conferem!"})
+            print(errors['senhas_nao_conferem'])
+            
+        elif(len(password) < 6):
+            errors.update({'senha_menor_que_6_digitos': "senha deve ter 6 dígitos ou mais!!"})
+            print(errors['senha_menor_que_6_digitos'])    
+                   
+        users_in_data_base = MyUser.objects.filter(username=nome)
+            
+        if(users_in_data_base.exists()):
+            errors.update({'username_ja_cadastrado': "Já existe usuário cadastrado com esse username. Escolha outro."})
+            print(errors['username_ja_cadastrado'])   
+        
+
+        
+        has_errors = len(errors) != 0
+        if (has_errors):
+            context = {
+            'errors': errors
+            }
+            return render(request, 'office/register_user.html', context)
+        
+        else:
+            my_groups_in_data = MyGroup.objects.filter(name=grupo_name)
+            
+            if((my_groups_in_data.exists()) == False):
+                group = MyGroup.objects.create(name=grupo_name)
+            else:
+                group = MyGroup.objects.get(name=grupo_name)
+
+            user = MyUser.objects.create_user(username = nome, email = email, password = password)
+            
+            # conexão entre as tabelas auth_user e auth_group
+            user.groups.add(group)
+            
+            print("*******CADASTRO COM SUCESSO*********")
+            print(f'USUÁRIO: {user.username}\nGROUP: {group.name}')
+                    
+            return redirect('login')
+            #return HttpResponse('USUÁRIO CRIADO COM SUCESSO')
+   
+    return render (request, 'office/register_user.html')
+
 
 def is_cpf_valid(cpf: str):
     result = False
@@ -450,7 +515,7 @@ def format_date(date):
     return formated_date
 
 
-def get_errors(name, date_of_birth, CPF, phone, previews_CPF = None):
+def get_errors_on_register_patient(name, date_of_birth, CPF, phone, previews_CPF = None):
     errors = {}
 
     if (name == "" or date_of_birth == "" or CPF == "" or phone == ""):
