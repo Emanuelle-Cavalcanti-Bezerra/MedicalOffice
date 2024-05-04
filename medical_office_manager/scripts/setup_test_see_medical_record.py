@@ -1,4 +1,3 @@
-import traceback 
 import base_scripts
 
 try:    
@@ -6,15 +5,9 @@ try:
     base_scripts.add_doctor()
     base_scripts.add_patient()
     
-except:
+except Exception as error:
     print("ERRO*********************************")
-    #traceback.print_exception()
-    print("ERRO*********************************")
-    traceback.print_stack()
-    print("ERRO*********************************")
-    traceback.print_exc()
-    print("ERRO*********************************")
-    #traceback.print_last()
+    print("ERRO:", error)
     print("FIM*********************************")
     quit(10)
     

@@ -1,6 +1,6 @@
 import sqlite3 as sql
 
-dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+dbpath = ".\\db.sqlite3"
 
 def clear_all_data():
     connection = sql.connect(dbpath)
