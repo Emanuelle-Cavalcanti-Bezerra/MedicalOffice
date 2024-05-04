@@ -36,6 +36,7 @@ jobs:
 
       - name: Run local server
         run: |
+          pwd
           cd medical_office_manager/
           python manage.py migrate
           python manage.py runserver &
