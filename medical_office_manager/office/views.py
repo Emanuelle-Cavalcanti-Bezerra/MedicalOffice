@@ -2,9 +2,9 @@ import datetime
 from time import gmtime, strftime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
-from .models import Patient, Appointment, MedicalRecordEntry, MyGroup, MyUser
+from .models import Patient, Appointment, MedicalRecordEntry
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.db.models import Q
 from . decorators import assistant_required, doctor_required
 
@@ -421,7 +421,7 @@ def register_user(request):
             errors.update({'senha_menor_que_6_digitos': "senha deve ter 6 dígitos ou mais!!"})
             print(errors['senha_menor_que_6_digitos'])    
                    
-        users_in_data_base = MyUser.objects.filter(username=nome)
+        users_in_data_base = User.objects.filter(username=nome)
             
         if(users_in_data_base.exists()):
             errors.update({'username_ja_cadastrado': "Já existe usuário cadastrado com esse username. Escolha outro."})
@@ -437,14 +437,21 @@ def register_user(request):
             return render(request, 'office/register_user.html', context)
         
         else:
-            my_groups_in_data = MyGroup.objects.filter(name=grupo_name)
+            my_groups_in_data = Group.objects.filter(name=grupo_name)
+            print(f"##############EXISTE GROUP: {grupo_name}#######################")
+            print(my_groups_in_data.exists())
             
-            if((my_groups_in_data.exists()) == False):
-                group = MyGroup.objects.create(name=grupo_name)
-            else:
-                group = MyGroup.objects.get(name=grupo_name)
+            
+            #teste = Group.objects.get(name=grupo_name)
+            #print(teste)
 
-            user = MyUser.objects.create_user(username = nome, email = email, password = password)
+            
+            if((my_groups_in_data.exists())):
+                group = Group.objects.filter(name=grupo_name)[0]
+            else:
+                group = Group.objects.create(name=grupo_name)
+
+            user = User.objects.create_user(username = nome, email = email, password = password)
             
             # conexão entre as tabelas auth_user e auth_group
             user.groups.add(group)
