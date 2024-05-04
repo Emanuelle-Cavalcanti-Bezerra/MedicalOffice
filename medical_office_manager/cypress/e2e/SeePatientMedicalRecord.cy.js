@@ -21,7 +21,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.contains('PRONTUÁRIO DO PACIENTE').should('be.visible')  
         cy.contains('Nome: João Dantas').should('be.visible')      
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
-        cy.contains('Voltar').should('be.visible')  
+        cy.contains('Voltarr').should('be.visible')  
     })
 /*    it('Patient medical record is displayed clicking on patient patient name on patients list', () => {      
         // Executar setup de preparação para o teste
