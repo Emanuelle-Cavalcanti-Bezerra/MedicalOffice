@@ -44,7 +44,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Verificar se prontuário foi renderizado corretamente
         cy.contains('PRONTUÁRIO DO PACIENTE').should('be.visible')  
         cy.contains('Nome: João Dantas').should('be.visible')      
-        cy.contains('Data de nascimento: 17/07/2024').should('be.visible')      
+        cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
         cy.contains('Voltar').should('be.visible')  
     })
 })
