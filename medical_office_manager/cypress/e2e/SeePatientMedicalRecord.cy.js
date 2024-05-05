@@ -19,9 +19,10 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Verificar se prontuário foi renderizado corretamente
         cy.contains('PRONTUÁRIO DO PACIENTE').should('be.visible')  
-        cy.contains('Nome: João Dantas').should('be.visible')      
+        cy.contains('Nome: João Dantas').should('be.visible')  
+        cy.contains('02367016062').should('be.visible')    
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
-        cy.contains('Voltar').should('be.visible')  
+        cy.contains('Ir para detalhamento do paciente').should('be.visible') 
     })
 
     it('Patient medical record is displayed clicking on patient patient name on patients list', () => {      
@@ -44,8 +45,9 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Verificar se prontuário foi renderizado corretamente
         cy.contains('PRONTUÁRIO DO PACIENTE').should('be.visible')  
-        cy.contains('Nome: João Dantas').should('be.visible')      
+        cy.contains('Nome: João Dantas').should('be.visible')  
+        cy.contains('02367016062').should('be.visible')    
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
-        cy.contains('Voltar').should('be.visible')  
+        cy.contains('Ir para detalhamento do paciente').should('be.visible')  
     })
 })
