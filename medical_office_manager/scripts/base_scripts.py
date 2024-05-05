@@ -1,15 +1,21 @@
-import os
+#import os
 import sqlite3 as sql
 
-TARGET_ENV = os.getenv('TARGET_ENV') or ""
-NOT_PROD = not TARGET_ENV.lower().startswith('prod')
+#TARGET_ENV = os.getenv('TARGET_ENV') or ""
+#NOT_PROD = not TARGET_ENV.lower().startswith('prod')
+
+#if NOT_PROD:
+    # CAMINHO PARA RODAR TESTE LOCALMENTE
+    #dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+#else:
+    # CAMINHO PARA RODAR TESTE NO GITHUB
+    #dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"
 
 # CAMINHO PARA RODAR TESTE NO GITHUB
 dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"
 
-if NOT_PROD:
-    # CAMINHO PARA RODAR TESTE LOCALMENTE
-    dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+# CAMINHO PARA RODAR TESTE LOCALMENTE
+dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
 
     
 def clear_all_data():
