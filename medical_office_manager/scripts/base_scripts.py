@@ -15,7 +15,7 @@ import sqlite3 as sql
 dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"
 
 # CAMINHO PARA RODAR TESTE LOCALMENTE
-dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+#dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
 
     
 def clear_all_data():
