@@ -19,9 +19,9 @@
             {% csrf_token %}
             <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
             <br>
-            <textarea name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
+            <textarea id="new_medical_record_entry" name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
             <br><br>
-            <button type="submit">Salvar</button>
+            <button id="btSalvar" type="submit">Salvar</button>
         </form>
     {% else%}
         {{medical_record_entry.0.content}}
@@ -29,6 +29,9 @@
 
     <br><br>
     <button onclick="window.location='{% url 'office:appointments_list_doctor' date=appointment.date%}'; return false;" >Voltar para visualização de consultas</button>
+
+    <br><br>
+    <button id="btVerProntuario" onclick="window.location='{% url 'office:patient_medical_record' patient_id=appointment.patient.id%}'; return false;" >Ver prontuário completo</button>
 </div>
 
 {% endblock %}
