@@ -54,21 +54,25 @@
                                     {{appointment.0}}
                                 </td>
                                 
-                                <td>
-                                    {{appointment.1}}
+                                <td >
+                                    <ul>
+                                        {%if appointment.1 == "DISPONÍVEL"%}
+                                            <li id="{{'appointment_slot'|add:appointment.2}}" value="{{appointment.1}}" style = "list-style-type: none">{{appointment.1}}</li>
+                                        {%else%}
+                                            <li id="{{'appointment_slot'|add:appointment.3}}" value="{{appointment.1}}" style = "list-style-type: none">{{appointment.1}}</li>
+                                        {%endif%}
+                                    </ul>
                                 </td>
                                 
                                 <td>
                                     {%if appointment.1 == "DISPONÍVEL"%}
-                                        
-                                            <button onclick="window.location='{% url 'office:schedule_appointment' date_time=date_default|add:' '|add:appointment.0 %}'; return false;" style="width:110px">Agendar</button>
-                                        
-
+                                            
+                                            <button id= "{{'bt'|add:appointment.2}}" onclick="window.location='{% url 'office:schedule_appointment' date_time=date_default|add:' '|add:appointment.0 %}'; return false;" style="width:110px" value="Agendar">Agendar</button>
+                                            
                                     {%else%}
                                         
-                                            <button onclick="window.location='{% url 'office:unschedule_appointment' appointment_id=appointment.2 %}'; return false;" style="width:110px">Desmarcar</button>
-                                        
-  
+                                            <button id= "{{'bt'|add:appointment.3}}" onclick="window.location='{% url 'office:unschedule_appointment' appointment_id=appointment.2 %}'; return false;" style="width:110px" value="Desmarcar">Desmarcar</button>
+
                                     {%endif%}
                                 </td>
                             </tr>

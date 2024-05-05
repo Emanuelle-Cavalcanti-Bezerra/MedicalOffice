@@ -238,16 +238,16 @@ def appointments_list_assistant(request: HttpRequest, date):
     for index in range(8,19):
         template_appointment = []
         if (len(appointments) == 0):
-            template_appointment = [f'{index:02d}:00', "DISPONÍVEL"]
+            template_appointment = [f'{index:02d}:00', "DISPONÍVEL", f'{index:02d}']
         else: 
             for appointment in appointments:
                 appointment_hour = str(int(str(appointment.time).split(":")[0]))
                 
                 if (appointment_hour == str(index)):
-                    template_appointment = [f'{index:02d}:00', appointment.patient.name, appointment.id]
+                    template_appointment = [f'{index:02d}:00', appointment.patient.name, appointment.id, f'{index:02d}']
                     break
                 elif (appointment_hour != str(index)):
-                    template_appointment = [f'{index:02d}:00', "DISPONÍVEL"]
+                    template_appointment = [f'{index:02d}:00', "DISPONÍVEL", f'{index:02d}']
         
         template_appointments.append(template_appointment)
              
