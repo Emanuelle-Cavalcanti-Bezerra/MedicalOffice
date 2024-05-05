@@ -65,10 +65,9 @@
 
                                     {%else%}
                                         
-                                            <button onclick="window.location='{% url 'office:display_appointment_details' appointment_id=appointment.2 %}'; return false;" style="width:110px">Ver</button>
+                                            <button id= "{{'bt'|add:appointment.3}}"  onclick="window.location='{% url 'office:display_appointment_details' appointment_id=appointment.2 %}'; return false;" style="width:110px" value="Ver">Ver</button>
                                         
-  
-                                    {%endif%}
+                                      {%endif%}
                                 </td>
                             </tr>
                         {% endfor %}

@@ -11,6 +11,8 @@
 <div class="container-fluid text-center display:block">
     <strong>Nome: {{patient.name}}</strong>
     <br>
+    <strong>CPF: {{patient.CPF}}</strong>
+    <br>
     <strong>Data de nascimento: {{birth_date}}</strong>
     <br>
 </div>
@@ -19,9 +21,9 @@
     <br><br>
     {%for medical_record_entry in medical_record_entries%}
         <tr>
-            <strong>{{medical_record_entry.appointment.date}}</strong>
+            &emsp;&emsp;<strong>{{medical_record_entry.appointment.date}}</strong>
             <br>
-            {{medical_record_entry.content}}
+            &emsp;&emsp;{{medical_record_entry.content}}
         </tr>
         <br><br>
     {% endfor %}
@@ -31,7 +33,7 @@
 <br><br>
 <div class="container-fluid text-center display:block">
     &emsp;&emsp;
-    <button type="submit" onclick="window.location='{% url 'office:patient_details_doctor' patient_id=patient.id%}'; return false;" >Voltar</button>
+    <button type="submit" onclick="window.location='{% url 'office:patient_details_doctor' patient_id=patient.id%}'; return false;" >Ir para detalhamento do paciente</button>
 </div>
 
 {% endblock %}
