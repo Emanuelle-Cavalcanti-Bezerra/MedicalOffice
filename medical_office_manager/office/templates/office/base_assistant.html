@@ -37,7 +37,7 @@
             </li>&emsp;&emsp;
             <li class="nav-item" >
               {% now "Y-m-d" as current_date%}
-              <a class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_assistant' date=current_date%} " style = "color: grey"><b>Consultas</b></a>
+              <a id="appointmentsListAssistant" class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_assistant' date=current_date%} " style = "color: grey"><b>Consultas</b></a>
             </li>&emsp;&emsp;
           </ul>
           <span class="navbar-text" style = "color: grey"><b>Olá, {{user.username}}</b>

@@ -12,7 +12,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('#loginButton').click()
 
         // Ver prontuário de paciente (listagem de pacientes -> detalhes do paciente -> prontuário)
-        cy.get('#listPatients').click()
+        cy.get('#listPatientsDoctor').click()
         cy.contains('02367016062').click()
         cy.contains('Ver prontuário').click()
 
@@ -23,6 +23,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')      
         cy.contains('Voltar').should('be.visible')  
     })
+
     it('Patient medical record is displayed clicking on patient patient name on patients list', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_test_see_medical_record.py")
@@ -37,7 +38,7 @@ describe('test suite SeePatientMedicalRecord', () => {
 
 
         // Ver prontuário de paciente (listagem de pacientes -> detalhes do paciente -> prontuário)
-        cy.get('#listPatients').click()
+        cy.get('#listPatientsDoctor').click()
         cy.contains('João Dantas').click()
         cy.contains('Ver prontuário').click()
 
