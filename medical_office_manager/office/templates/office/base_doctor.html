@@ -26,11 +26,11 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'office:home_doctor' %} " style = "color: grey"><b>Início</b></a>
               </li>&emsp;&emsp;
               <li class="nav-item">
-                <a id="listPatients" class="nav-link" href="{% url 'office:list_patients_doctor' %}" style = "color: grey"><b>Listar Pacientes</b></a>
+                <a id="listPatientsDoctor" class="nav-link" href="{% url 'office:list_patients_doctor' %}" style = "color: grey"><b>Listar Pacientes</b></a>
               </li>&emsp;&emsp;
               <li class="nav-item" >
                 {% now "Y-m-d" as current_date%}
-                <a class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_doctor' date=current_date%} " style = "color: grey"><b>Consultas</b></a>
+                <a id="appointmentsListDoctor"  class="nav-link active" aria-current="page" href="{% url 'office:appointments_list_doctor' date=current_date%} " style = "color: grey"><b>Consultas</b></a>
               </li>&emsp;&emsp;
             </ul>
             <span class="navbar-text" style = "color: grey"><b>Olá, {{user.username}}</b>

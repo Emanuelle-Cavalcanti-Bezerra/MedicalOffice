@@ -1,19 +1,23 @@
 import sqlite3 as sql
 
+# CAMINHO PARA RODAR TESTE NO GITHUB
 dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"
+
+# CAMINHO PARA RODAR TESTE LOCALMENTE
+#dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
 
 def clear_all_data():
     connection = sql.connect(dbpath)
     cursor = connection.cursor()
     connection.row_factory = sql.Row
-
+    
     cursor.execute("DELETE FROM auth_group")
     cursor.execute("DELETE FROM auth_user")
     cursor.execute("DELETE FROM auth_user_groups")
     cursor.execute("DELETE FROM office_patient")
     cursor.execute("DELETE FROM office_appointment")
     cursor.execute("DELETE FROM office_medicalrecordentry")
-    
+        
     connection.commit()
     
 def add_doctor():
@@ -48,13 +52,34 @@ def add_assistant():
     connection.commit()
 
 
-     
-def add_patient():
+def add_patient(name, date_of_birth, CPF, phone):    
     connection = sql.connect(dbpath)
     cursor = connection.cursor()
     connection.row_factory = sql.Row
+    
+    cursor.execute(f"INSERT INTO office_patient (name, date_of_birth, CPF, phone) VALUES ('{name}', '{date_of_birth}', '{CPF}', '{phone}')")
+    
+    patient_id = cursor.lastrowid
+    
+    connection.commit()
+    
+    return patient_id
+   
 
-    cursor.execute("INSERT INTO office_patient (name, date_of_birth, CPF, phone) VALUES ('João Dantas', '2002-07-17', '02367016062', '35351587')")
-
+def add_appointment(date, time, name, date_of_birth, CPF, phone):   
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+    
+    patient_id = add_patient(name, date_of_birth, CPF, phone)
+    
+    
+    print("*********DEPOIS ADD PCT**************")
+    print(patient_id)
+    cursor.execute(f"INSERT INTO office_appointment (date, time, patient_id) VALUES ('{date}', '{time}', {patient_id})")
+    
     connection.commit()
 
+
+def add_medical_record_entry():
+    pass
