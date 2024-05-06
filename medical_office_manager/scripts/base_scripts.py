@@ -64,12 +64,12 @@ def add_assistant():
     connection.commit()
 
 
-def add_patient(name, date_of_birth, CPF, phone):    
+def add_patient(name, date_of_birth, cpf, phone):    
     connection = sql.connect(dbpath)
     cursor = connection.cursor()
     connection.row_factory = sql.Row
     
-    cursor.execute(f"INSERT INTO office_patient (name, date_of_birth, CPF, phone) VALUES ('{name}', '{date_of_birth}', '{CPF}', '{phone}')")
+    cursor.execute(f"INSERT INTO office_patient (name, date_of_birth, CPF, phone) VALUES ('{name}', '{date_of_birth}', '{cpf}', '{phone}')")
     
     patient_id = cursor.lastrowid
     
@@ -78,20 +78,66 @@ def add_patient(name, date_of_birth, CPF, phone):
     return patient_id
    
 
-def add_appointment(date, time, name, date_of_birth, CPF, phone):   
+def add_appointment(date, time, cpf):   
     connection = sql.connect(dbpath)
     cursor = connection.cursor()
     connection.row_factory = sql.Row
     
-    patient_id = add_patient(name, date_of_birth, CPF, phone)
+    patient_id = get_patient_id(cpf)
     
-    
-    print("*********DEPOIS ADD PCT**************")
-    print(patient_id)
     cursor.execute(f"INSERT INTO office_appointment (date, time, patient_id) VALUES ('{date}', '{time}', {patient_id})")
     
+    appointment_id = cursor.lastrowid
+    
     connection.commit()
+    
+    return (patient_id, appointment_id)
 
 
-def add_medical_record_entry():
-    pass
+def add_medical_record_entry(content, date, time, cpf):
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+    
+    appointment_id = get_patient_id(cpf)
+    patient_id = get_appointment_id(date, time)
+    
+    cursor.execute(f"INSERT INTO office_medicalrecordentry (content, appointment_id, patient_id) VALUES ('{content}', {appointment_id}, {patient_id})")
+        
+    connection.commit()
+    
+    
+def get_patient_id(cpf):
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+            
+    cursor.execute(f"SELECT id FROM office_patient WHERE CPF = '{cpf}'")
+    
+    busca = list(cursor.fetchall())
+    patient_id = int(str(busca[0]).replace("(","").replace(")","").replace(",",""))
+        
+    print(patient_id)
+    
+    connection.commit()
+    
+    return patient_id
+
+
+def get_appointment_id(date, time):
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+    
+    cursor.execute(f"SELECT id FROM office_appointment WHERE date = '{date}' AND time = '{time}'")
+    
+    busca = list(cursor.fetchall())
+    apointment_id =  int(str(busca[0]).replace("(","").replace(")","").replace(",",""))
+    
+    print(apointment_id)
+    
+    connection.commit()
+    
+    return apointment_id
+    
+   
