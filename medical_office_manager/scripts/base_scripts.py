@@ -1,12 +1,6 @@
-#import os
 from sys import platform
-import os
 import sqlite3 as sql
 
-#TARGET_ENV = os.getenv('TARGET_ENV') or ""
-#NOT_PROD = not TARGET_ENV.lower().startswith('prod')
-
-#if NOT_PROD:
 if platform == "win32":
     # CAMINHO PARA RODAR TESTE LOCALMENTE
     dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
@@ -96,8 +90,8 @@ def add_medical_record_entry(content, date, time, cpf):
     cursor = connection.cursor()
     connection.row_factory = sql.Row
     
-    appointment_id = get_patient_id(cpf)
-    patient_id = get_appointment_id(date, time)
+    patient_id= get_patient_id(cpf)
+    appointment_id  = get_appointment_id(date, time)
     
     cursor.execute(f"INSERT INTO office_medicalrecordentry (content, appointment_id, patient_id) VALUES ('{content}', {appointment_id}, {patient_id})")
         
