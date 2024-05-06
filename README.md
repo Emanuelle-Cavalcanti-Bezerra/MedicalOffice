@@ -72,7 +72,7 @@ Emanuelle Cavalcanti Bezerra
 #### ![Projeto FDS Etapa 3 drawio](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/6808eb17-70d9-4b3d-873a-572e34c684ce)
 
 ### GitHub - Issue/bug tracker
-#### ![Issues abertos](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/925e7c9b-3ded-4de3-bb22-d8822c6783e7)
+#### ![Issues abertos](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/1c73a4d6-0b54-47a3-ba64-566209a5c093)
 #### ![Issues fechados](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/82ad78f5-1ec8-4c16-ab79-6e1be8452fd6)
 
 ### Site 
