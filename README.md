@@ -58,5 +58,36 @@ Emanuelle Cavalcanti Bezerra
 
 </details>
 
+<details>
 
+<summary>Entrega 3</summary>
+
+### Jira
+#### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
+#### Estado final da Sprint 2:
+#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/31156b30-56d9-402b-b0f4-d520a6abb5c0)
+#### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/230ff1fe-e3e2-4fce-afa6-0f470366b498)
+
+### Diagrama de atividades do sistema
+#### ![Projeto FDS Etapa 3 drawio](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/6808eb17-70d9-4b3d-873a-572e34c684ce)
+
+### GitHub - Issue/bug tracker
+#### ![Issues abertos](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/925e7c9b-3ded-4de3-bb22-d8822c6783e7)
+#### ![Issues fechados](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/82ad78f5-1ec8-4c16-ab79-6e1be8452fd6)
+
+### Site 
+#### https://medical-office-manager.azurewebsites.net/
+#### Instruções de acesso:  
+###### Para acessar o sistema, realizar cadastro e posterior login com usuário e senha criados ou utilizar os usuários já existentes para teste abaixo.
+#### Usuários cadastrados para teste:
+###### usuário: assistente1; senha: yo10riohTM
+###### usuário: medico1; senha: V1Zs7W2QoN
+
+#### Screencasts:
+###### Protótipo Figma - 
+###### Site - 
+###### Pipeline de build e deploy - 
+###### Testes com Cypress - 
+
+</details>
 
