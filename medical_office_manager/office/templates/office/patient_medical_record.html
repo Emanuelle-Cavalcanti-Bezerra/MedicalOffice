@@ -17,11 +17,11 @@
     <br>
 </div>
      
-<div class="container-fluid">
+<div id="medicalRecordContent" class="container-fluid">
     <br><br>
     {%for medical_record_entry in medical_record_entries%}
         <tr>
-            &emsp;&emsp;<strong>{{medical_record_entry.appointment.date}}</strong>
+            &emsp;&emsp;<strong>Data da consulta: {{medical_record_entry.appointment.date}}</strong>
             <br>
             &emsp;&emsp;{{medical_record_entry.content}}
         </tr>
