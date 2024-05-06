@@ -65,7 +65,10 @@ Emanuelle Cavalcanti Bezerra
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
 #### Estado final da Sprint 2:
-#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/31156b30-56d9-402b-b0f4-d520a6abb5c0)
+#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/50145b1e-157c-40aa-b605-c23cb161aa59)
+#### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/8e0b3b92-c43d-46d7-b3a4-2fa444eb7ef7)
+
+
 #### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/230ff1fe-e3e2-4fce-afa6-0f470366b498)
 
 ### Diagrama de atividades do sistema
