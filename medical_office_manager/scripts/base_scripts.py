@@ -76,7 +76,7 @@ def add_patient(name, date_of_birth, cpf, phone):
     connection.commit()
     
     return patient_id
-   
+  
 
 def add_appointment(date, time, cpf):   
     connection = sql.connect(dbpath)
