@@ -2,7 +2,7 @@ import {getCurrentDate} from './utils.js'
 import {formatDateBR} from './utils.js'
 
 describe('test suite SeeAppointmentsPerDateAssistant', () => {
-    it('List of appointments of a chosen date is displayed to assistant', () => {
+    it('List of appointments of a chosen date (2024-07-17) is displayed to assistant. Temos consultas para João Dantas e Ester Oliveira agendadas para esse dia.', () => {
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_test_see_appointments_per_date_assistant.py")
         
@@ -22,9 +22,9 @@ describe('test suite SeeAppointmentsPerDateAssistant', () => {
         cy.get('#btBuscarDataConsultas').click()
 
         // Verificar se a programação de consultas do dia escolhido foi renderizada corretamente
-        cy.contains('CONSULTAS - 17/07/2024').should('be.visible')  
+        cy.contains('CONSULTAS - 17/07/2024').should('be.visible') 
         cy.contains('João Dantas').should('be.visible')  
-        cy.contains('Ester Oliveira').should('be.visible')    
+        cy.contains('Ester Oliveira').should('be.visible')  
         cy.contains('Agendar').should('be.visible') 
         cy.contains('Desmarcar').should('be.visible')  
     })

@@ -149,7 +149,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+from sys import platform
+if platform == "win32":
+    TIME_ZONE = 'America/Sao_Paulo'
+else:
+    TIME_ZONE = 'UTC'
+
 
 USE_I18N = True
 
