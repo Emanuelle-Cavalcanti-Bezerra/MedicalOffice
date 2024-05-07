@@ -85,7 +85,7 @@ Emanuelle Cavalcanti Bezerra
 ###### usuário: medico1; senha: V1Zs7W2QoN
 
 #### Screencasts:
-###### Protótipo Figma - 
+###### Protótipo Figma - https://youtu.be/WM_q13xrwZE
 ###### Site - https://youtu.be/5P3dqGE0hDw
 ###### Pipeline de build e deploy - 
 ###### Testes com Cypress - https://youtu.be/JuhUWCVHYeY
