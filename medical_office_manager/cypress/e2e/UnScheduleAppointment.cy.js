@@ -5,7 +5,7 @@ describe('test suite ScheduleAppointment', () => {
         
         // Acessar página de home do assistente
         cy.visit('/office/home_assistant/');
-        
+
         // Login como usuário do grupo assistentes
         cy.get('[name="username"]').type('assistente1')
         cy.get('[name="password"]').type('fds20241')

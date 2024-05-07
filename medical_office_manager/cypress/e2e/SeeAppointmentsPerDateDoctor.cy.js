@@ -2,7 +2,7 @@ import {getCurrentDate} from './utils.js'
 import {formatDateBR} from './utils.js'
 
 describe('test suite SeeAppointmentsPerDateDoctor', () => {
-    it('List of appointments of default date (current day) is displayed to doctor', () => {
+    it('List of appointments of a chosen date (2024-07-17) is displayed to doctor.Temos consultas para João Dantas e Ester Oliveira agendadas para esse dia.', () => {
             // Executar setup de preparação para o teste
             cy.exec("python scripts/setup_test_see_appointments_per_date_doctor.py")
     
@@ -24,11 +24,11 @@ describe('test suite SeeAppointmentsPerDateDoctor', () => {
             // Verificar se a programação de consultas do dia escolhido foi renderizada corretamente
             cy.contains('CONSULTAS - 17/07/2024').should('be.visible')  
             cy.contains('João Dantas').should('be.visible')  
-            cy.contains('Ester Oliveira').should('be.visible')    
+            cy.contains('Ester Oliveira').should('be.visible') 
             cy.contains('--------------------').should('be.visible') 
             cy.contains('Ver').should('be.visible')  
         })
-        it('List of appointments of current date is displayed to doctor. Doctor does not chose a day', () => {
+        it('List of appointments of current date is displayed to doctor. Doctor does not chose a day.', () => {
             // Executar setup de preparação para o teste
             cy.exec("python scripts/setup_test_see_appointments_per_date_doctor.py")
             

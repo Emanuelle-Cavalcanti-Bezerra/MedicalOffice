@@ -65,15 +65,16 @@ Emanuelle Cavalcanti Bezerra
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
 #### Estado final da Sprint 2:
-#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/31156b30-56d9-402b-b0f4-d520a6abb5c0)
-#### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/230ff1fe-e3e2-4fce-afa6-0f470366b498)
+#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/50145b1e-157c-40aa-b605-c23cb161aa59)
+#### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/8e0b3b92-c43d-46d7-b3a4-2fa444eb7ef7)
 
 ### Diagrama de atividades do sistema
 #### ![Projeto FDS Etapa 3 drawio](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/6808eb17-70d9-4b3d-873a-572e34c684ce)
 
 ### GitHub - Issue/bug tracker
-#### ![Issues abertos](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/925e7c9b-3ded-4de3-bb22-d8822c6783e7)
-#### ![Issues fechados](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/82ad78f5-1ec8-4c16-ab79-6e1be8452fd6)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/abe0a4d9-ae6e-4463-b464-8cd0b40df1ad)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/bd7099c5-b901-49cb-9d8e-fadabbc226d9)
+
 
 ### Site 
 #### https://medical-office-manager.azurewebsites.net/
@@ -85,9 +86,9 @@ Emanuelle Cavalcanti Bezerra
 
 #### Screencasts:
 ###### Protótipo Figma - 
-###### Site - 
+###### Site - https://youtu.be/5P3dqGE0hDw
 ###### Pipeline de build e deploy - 
-###### Testes com Cypress - 
+###### Testes com Cypress - https://youtu.be/JuhUWCVHYeY
 
 </details>
 
