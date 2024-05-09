@@ -1,4 +1,5 @@
 import datetime
+from django.utils import timezone
 from time import gmtime, strftime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
@@ -250,11 +251,14 @@ def appointments_list_assistant(request: HttpRequest, date):
                     template_appointment = [f'{index:02d}:00', "DISPONÍVEL", f'{index:02d}']
         
         template_appointments.append(template_appointment)
-             
+    
+    data_corrente = timezone.now      
+    
     context = {
         'appointments': template_appointments,
         'date': format_date(date_filter),
-        'date_default': str(date_filter)
+        'date_default': str(date_filter),
+        'data_corrente': data_corrente
     }
     
     return render(request, 'office/appointments_list_assistant.html', context)
@@ -287,11 +291,15 @@ def appointments_list_doctor(request: HttpRequest, date):
                     template_appointment = [f'{index:02d}:00', "DISPONÍVEL", f'{index:02d}']
         
         template_appointments.append(template_appointment)
-        
+    
+    data_corrente = timezone.now
+      
     context = {
         'appointments': template_appointments,
         'date': format_date(date_filter),
-        'date_default': str(date_filter)
+        'date_default': str(date_filter),
+        'data_corrente': data_corrente
+        
     }
     
     return render(request, 'office/appointments_list_doctor.html', context)
