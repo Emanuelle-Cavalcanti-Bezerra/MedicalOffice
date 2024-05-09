@@ -1,4 +1,4 @@
-export function getCurrentDate(){
+export function getCurrentDateFromSystem(){
     const data = new Date()
 
     const dia = String(data.getDate()).padStart(2,'0') // 1-> 01
@@ -24,6 +24,19 @@ export function formatDateBR(date){
     return formatedDateBR
 }
 
-export function getCurrentDateUTC(){
-    
+export function getCurrentDateUTC3(){
+    var date = new Date();
+
+    const recifeTime = date.toLocaleString("en-US", {timeZone: "America/Recife"});
+
+    const dateCompleteParts = recifeTime.split(",");
+    const dateParts = dateCompleteParts[0].split("/");
+
+    const dia = dateParts[1].padStart(2,'0');
+    const mes = dateParts[0].padStart(2,'0');
+    const ano = dateParts[2];
+
+    const currentDateUTC3 = `${ano}-${mes}-${dia}`;
+
+    return currentDateUTC3;
 }

@@ -1,4 +1,4 @@
-import {getCurrentDate} from './utils.js'
+import {getCurrentDateUTC3} from './utils.js'
 import {formatDateBR} from './utils.js'
 
 describe('test suite SeeAppointmentsPerDateDoctor', () => {
@@ -44,8 +44,8 @@ describe('test suite SeeAppointmentsPerDateDoctor', () => {
             cy.get('#appointmentsListDoctor').click()
             
             // Verificar se a programação de consultas do dia atual foi renderizada corretamente
-            cy.get("#inputDataConsultas").invoke("val").should("eq", getCurrentDate())
-            cy.contains(`CONSULTAS - ${formatDateBR(getCurrentDate())}`).should('be.visible')
+            cy.get("#inputDataConsultas").invoke("val").should("eq", getCurrentDateUTC3())
+            cy.contains(`CONSULTAS - ${formatDateBR(getCurrentDateUTC3())}`).should('be.visible')
         })
  
 })
