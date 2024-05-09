@@ -23,3 +23,7 @@ export function formatDateBR(date){
 
     return formatedDateBR
 }
+
+export function getCurrentDateUTC(){
+    
+}

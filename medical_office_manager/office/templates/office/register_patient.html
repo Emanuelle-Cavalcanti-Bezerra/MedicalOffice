@@ -36,13 +36,13 @@
         {% endif %}
 
         
-        Nome: <input type="text" name="name">
+        Nome: <input type="text" name="name" id="patient_name">
         <br><br>
-        Data de nascimento: <input type="date" name="date_of_birth">
+        Data de nascimento: <input type="date" name="date_of_birth" id="patient_date_of_birth">
         <br><br>        
-        CPF: <input type="text" name="CPF" placeholder="Digite apenas números">
+        CPF: <input type="text" name="CPF" id="patient_cpf" data-mask="000.000.000-00">
         <br><br>        
-        Telefone: <input type="text" name="phone" placeholder="Digite apenas números">
+        Telefone celular: <input type="text" name="phone" data-mask="(00) 00000-0000">
         <br><br>
 
         &emsp;&emsp;
@@ -52,5 +52,14 @@
     </div>
 </form>
 
+<!-- Máscaranos inputs: usar jquery  + atributo data-mask = "máscara definida" 
+     (ex: <input type="text" data-mask="(00)0000-0000">)
+     Organiza no formato da máscara ao digitar no teclado ou ao colar um cpf/telefone
+-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
 {% endblock %}
 
+
+    

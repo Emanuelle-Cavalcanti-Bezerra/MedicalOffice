@@ -1,6 +1,7 @@
 from sys import platform
 import sqlite3 as sql
 
+
 if platform == "win32":
     # CAMINHO PARA RODAR TESTE LOCALMENTE
     dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
