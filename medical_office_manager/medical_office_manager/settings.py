@@ -151,7 +151,7 @@ LANGUAGE_CODE = 'pt-BR'
 
 from sys import platform
 if platform == "win32":
-    TIME_ZONE = 'America/Sao_Paulo'
+    TIME_ZONE = 'America/Recife'
 else:
     TIME_ZONE = 'UTC'
 
