@@ -26,11 +26,13 @@
         <table>
             <tr>
                 <td style = "border: none; vertical-align: text-top">
-                    {% now "Y-m-d" as current_date%}
-                    <form action = '{% url 'office:appointments_list_doctor' date=current_date%}' method="POST">
+                    {% load tz %}
+
+                    <form action = '{% url 'office:appointments_list_doctor' date=data_corrente|localtime|date:'Y-m-d'%}' method="POST">
                         {% csrf_token %}
                         <input id="inputDataConsultas" type="date" name="appointment_date" value = "{{date_default}}">
                         <br><br>
+                        
                         <button id="btBuscarDataConsultas" type="submit">Buscar</button>
                     </form>
                 </td>

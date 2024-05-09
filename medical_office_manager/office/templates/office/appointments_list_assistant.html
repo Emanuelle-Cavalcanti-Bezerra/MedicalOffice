@@ -26,13 +26,14 @@
         <table>
             <tr>
                 <td style = "border: none; vertical-align: text-top">
-                    {% now "Y-m-d" as current_date%}
-                    <form action = '{% url 'office:appointments_list_assistant' date=current_date%}' method="POST">
+                    {% load tz %}
+
+                    <form action = '{% url 'office:appointments_list_assistant' date=data_corrente|localtime|date:'Y-m-d'%}' method="POST">
                         {% csrf_token %}
-                    <input id="inputDataConsultas" type="date" name="appointment_date" value = "{{date_default}}">
-                    <br><br>
-                    
-                    <button id="btBuscarDataConsultas" type="submit">Buscar</button>
+                        <input id="inputDataConsultas" type="date" name="appointment_date" value = "{{date_default}}">
+                        <br><br>
+                        
+                        <button id="btBuscarDataConsultas" type="submit">Buscar</button>
                     </form>
                 </td>
 
@@ -87,20 +88,5 @@
         </table>
     </div>
 </div>
-
-<script>
-    var date = new Date();
-
-    const recifeTime = date.toLocaleString("en-US", {timeZone: "America/Recife"});
-
-    const dateCompleteParts = recifeTime.split(",");
-    const dateParts = dateCompleteParts[0].split("/");
-
-    const dia = dateParts[1].padStart(2,'0');
-    const mes = dateParts[0].padStart(2,'0');
-    const ano = dateParts[2];
-
-    const currentDateUTC3 = `${ano}-${mes}-${dia}`;
-</script>
 
 {% endblock %}
