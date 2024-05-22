@@ -410,7 +410,13 @@ def add_document_to_appointment(request, appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
     
     titulo = request.POST.get('ipt_title_document')
+    if (titulo == ""):
+        return redirect(f'/office/display_appointment_details/{appointment_id}')
+    
     documento_location = request.FILES.get('ipt_add_document_to_appointment')
+    
+
+    
     
     documento = Document(appointment = appointment, titulo=titulo, documento_location = documento_location)
     documento.save()
