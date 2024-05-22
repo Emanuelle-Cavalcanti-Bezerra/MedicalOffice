@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from django.utils import timezone
 from time import gmtime, strftime
 from django.shortcuts import redirect, render
@@ -99,10 +99,41 @@ def patient_medical_record(request: HttpRequest, patient_id):
     birth_date = format_date(patient.date_of_birth)
    
     medical_record_entries = patient.medicalrecordentry_set.all()
+
+    appointments = patient.appointment_set.all().filter(date__lt=datetime.now())
+    print('\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n')
+    print(appointments)
+    appointments_data = []
+    for appointment in appointments:
+        docs = appointment.document_set.all()
+        #medicalrecordentry = MedicalRecordEntry.objects.filter(appointment=appointment)
+        medicalrecordentry = appointment.medicalrecordentry_set.all()
+        print("\n***************  APPOINTMENT *******************\n")
+        print(appointment)
+        print("\n***************  MEDICAL RECORD ENTRY *******************\n")
+        print(medicalrecordentry)
+        if(len(medicalrecordentry) == 0):
+            medicalrecordentry = "Médico ainda não escreveu nenhuma entrada de prontuário para esta consulta."
+        else:
+            medicalrecordentry = medicalrecordentry[0].content
+            
+        print(medicalrecordentry)
+        print("\n***************  DOCUMENTOS *******************\n")
+        print(docs)
+        appointment_data = [appointment, medicalrecordentry, docs]
+        
+        print("\n***************  APPOINTMENT DATA*******************\n")
+        print(appointment_data)
+        appointments_data.append(appointment_data)
+   
+    print("\n####### TUDO #########\n")    
+    print(appointments_data)
+        
     
     context = {'patient': patient,
                'birth_date': birth_date,
-               'medical_record_entries': medical_record_entries
+               'medical_record_entries': medical_record_entries, 
+               'appointments_data': appointments_data
                }
     
     return render(request, 'office/patient_medical_record.html', context)
