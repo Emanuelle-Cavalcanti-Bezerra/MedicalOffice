@@ -1,6 +1,23 @@
 {% extends "office/base_doctor.html" %}
 
 {% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #ffe6d7;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #ffe6d7;
+      }
+      </style>
 
 <div class="container-fluid text-center display:block">
     <br>
@@ -14,18 +31,53 @@
     <p><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
     <br>
 
-    {%if medical_record_entry|length == 0 %}
-        <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
-            {% csrf_token %}
-            <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
-            <br>
-            <textarea id="new_medical_record_entry" name="new_medical_record_entry" id="new_medical_record_entry" cols="60" rows="5"></textarea>
-            <br><br>
-            <button id="btSalvar" type="submit">Salvar</button>
-        </form>
-    {% else%}
-        {{medical_record_entry.0.content}}
-    {% endif %}
+    <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
+        {%if medical_record_entry|length == 0 %}
+            <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
+                {% csrf_token %}
+                <label for="new_medical_record_entry"><strong>Preencha a entrada de prontuário desta consulta:</strong></label>
+                <br>
+                <textarea id="new_medical_record_entry" name="new_medical_record_entry" cols="60" rows="5"></textarea>
+                <br><br>
+                <button id="btSalvar" type="submit">Salvar</button>
+            </form>
+        {% else%}
+            {{medical_record_entry.0.content}}
+        {% endif %}
+    </section>
+
+    <br><br>
+
+    <table>
+        <tr>
+            <td style = "border: none; vertical-align: text-center">
+                <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
+                    <form action = '{% url 'office:add_document_to_appointment' appointment_id=appointment.id%}' method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="lb_add_document_to_appointment"><strong>Adicionar documentos: </strong></label>
+                        <br><br>
+                        <input type="text" id="ipt_title_document" name="ipt_title_document" placeholder="Titulo do documento">
+                        <br><br>
+                        <input type="file" id="ipt_add_document_to_appointment" name="ipt_add_document_to_appointment">
+                        <br><br>
+                        <button id="btAdicionar" type="submit">Adicionar</button>
+                    </form>
+                </section>
+            </td>
+            
+            <td style = "border: none; vertical-align: text-top">
+                <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
+                    <p> <strong>Documentos</strong></p>
+                    
+                    <ul>
+                    {% for documento in documentos%}
+                    <li><a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}">{{documento.titulo}}</a></li>
+                    {% endfor %}
+                </ul>
+                </section>
+            </td>
+        </tr>
+    </table>
 
     <br><br>
     <button onclick="window.location='{% url 'office:appointments_list_doctor' date=appointment.date%}'; return false;" >Voltar para visualização de consultas</button>

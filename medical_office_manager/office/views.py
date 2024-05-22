@@ -3,7 +3,7 @@ from django.utils import timezone
 from time import gmtime, strftime
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
-from .models import Patient, Appointment, MedicalRecordEntry
+from .models import Patient, Appointment, MedicalRecordEntry,Document
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.db.models import Q
@@ -382,6 +382,9 @@ def unschedule_appointment_successfully(request, appointment_id):
 @doctor_required 
 def display_appointment_details(request, appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
+    documentos = appointment.document_set.all()
+    
+    print(documentos)
         
     medical_record_entry = appointment.medicalrecordentry_set.all()
     
@@ -396,9 +399,25 @@ def display_appointment_details(request, appointment_id):
     context= {
         'appointment': appointment,
         'medical_record_entry': medical_record_entry,
+        'documentos': documentos
     }
     
     return render(request, 'office/display_appointment_details.html', context)
+
+@login_required
+@doctor_required 
+def add_document_to_appointment(request, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id)
+    
+    titulo = request.POST.get('ipt_title_document')
+    documento_location = request.FILES.get('ipt_add_document_to_appointment')
+    
+    documento = Document(appointment = appointment, titulo=titulo, documento_location = documento_location)
+    documento.save()
+    
+    return redirect(f'/office/display_appointment_details/{appointment_id}')
+
+
 
 
 def register_user(request):

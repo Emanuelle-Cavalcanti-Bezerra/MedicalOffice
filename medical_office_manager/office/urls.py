@@ -23,7 +23,8 @@ urlpatterns = [
     path('unschedule_appointment/<int:appointment_id>/', views.unschedule_appointment, name = 'unschedule_appointment'),
     path('unschedule_appointment_successfully/<int:appointment_id>/', views.unschedule_appointment_successfully, name = 'unschedule_appointment_successfully'),
     path('display_appointment_details/<int:appointment_id>/', views.display_appointment_details, name='display_appointment_details'),
-    path('register_user/', views.register_user, name='register_user')
+    path('register_user/', views.register_user, name='register_user'),
+    path('add_document_to_appointment/<int:appointment_id>/', views.add_document_to_appointment, name='add_document_to_appointment'),
     
  
 ]
