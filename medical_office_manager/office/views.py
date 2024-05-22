@@ -414,6 +414,8 @@ def add_document_to_appointment(request, appointment_id):
         return redirect(f'/office/display_appointment_details/{appointment_id}')
     
     documento_location = request.FILES.get('ipt_add_document_to_appointment')
+    if (documento_location == None):
+        return redirect(f'/office/display_appointment_details/{appointment_id}')
     
 
     
