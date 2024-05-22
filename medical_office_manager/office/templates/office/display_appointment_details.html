@@ -29,9 +29,12 @@
     <p><strong>Data: {{appointment.date}}</strong></p>
     <p><strong>Hora: {{appointment.time}}</strong></p>
     <p><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
-    <br>
 
-    <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
+    <br>
+    <hr>
+    
+    <section >
+        <p> <strong>Entrada de prontuário</strong></p>
         {%if medical_record_entry|length == 0 %}
             <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
                 {% csrf_token %}
@@ -40,50 +43,53 @@
                 <textarea id="new_medical_record_entry" name="new_medical_record_entry" cols="60" rows="5"></textarea>
                 <br><br>
                 <button id="btSalvar" type="submit">Salvar</button>
+                <p> <br></p>
             </form>
         {% else%}
             {{medical_record_entry.0.content}}
         {% endif %}
     </section>
 
+    <hr>
+
+    <section >
+        <form action = '{% url 'office:add_document_to_appointment' appointment_id=appointment.id%}' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="lb_add_document_to_appointment"><strong>Adicionar documentos: </strong></label>
+            <br><br>
+            <input type="text" id="ipt_title_document" name="ipt_title_document" placeholder="Titulo do documento">
+            <br><br>
+            <input type="file" id="ipt_add_document_to_appointment" name="ipt_add_document_to_appointment">
+            <br><br>
+            <button id="btAdicionar" type="submit">Adicionar</button>
+            <br>
+            <p> <br></p>
+        </form>
+    </section>
+
+    <hr>
+
+    <section >
+        <p> <strong>Documentos</strong></p>
+        
+        <ul>
+        {% for documento in documentos%}
+        <a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}"><strong>-</strong> {{documento.titulo}}</a>
+        <br>
+        {% endfor %}
+    </ul>
+    </section>
+
+    <hr>
     <br><br>
 
-    <table>
-        <tr>
-            <td style = "border: none; justify-content: center; text-align: center; align-items: center;">
-                <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
-                    <form action = '{% url 'office:add_document_to_appointment' appointment_id=appointment.id%}' method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <label for="lb_add_document_to_appointment"><strong>Adicionar documentos: </strong></label>
-                        <br><br>
-                        <input type="text" id="ipt_title_document" name="ipt_title_document" placeholder="Titulo do documento">
-                        <br><br>
-                        <input type="file" id="ipt_add_document_to_appointment" name="ipt_add_document_to_appointment">
-                        <br><br>
-                        <button id="btAdicionar" type="submit">Adicionar</button>
-                    </form>
-                </section>
-            </td>
-            
-            <td style = "border: none; horizontal-align: text-center">
-                <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
-                    <p> <strong>Documentos</strong></p>
-                    
-                    <ul>
-                    {% for documento in documentos%}
-                    <li><a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}">{{documento.titulo}}</a></li>
-                    {% endfor %}
-                </ul>
-                </section>
-            </td>
-        </tr>
-    </table>
-
-    <br><br>
     <button onclick="window.location='{% url 'office:appointments_list_doctor' date=appointment.date%}'; return false;" >Voltar para visualização de consultas</button>
 
     <br><br>
+
     <button id="btVerProntuario" onclick="window.location='{% url 'office:patient_medical_record' patient_id=appointment.patient.id%}'; return false;" >Ver prontuário completo</button>
+
+    <br><br>
 </div>
 
 {% endblock %}

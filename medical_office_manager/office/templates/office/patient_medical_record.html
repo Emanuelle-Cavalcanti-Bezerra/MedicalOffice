@@ -19,14 +19,27 @@
      
 <div id="medicalRecordContent" class="container-fluid">
     <br><br>
-    {%for medical_record_entry in medical_record_entries%}
-        <tr>
-            &emsp;&emsp;<strong>Data da consulta: {{medical_record_entry.appointment.date}}</strong>
-            <br>
-            &emsp;&emsp;{{medical_record_entry.content}}
-        </tr>
-        <br><br>
+    <hr>
+    {%for appointment_data in appointments_data%}
+        
+
+                &emsp;&emsp;<strong>Data da consulta: {{appointment_data.0.date}}</strong>
+                <br>
+                &emsp;&emsp;{{appointment_data.1}}
+                <br>
+                &emsp;&emsp;&emsp;&emsp;
+                
+                <ul>
+                {%for documento in appointment_data.2%}
+                    <li>
+                        <a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}">{{documento.titulo}}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+
+                <hr>
     {% endfor %}
+
     
 </div>
 
