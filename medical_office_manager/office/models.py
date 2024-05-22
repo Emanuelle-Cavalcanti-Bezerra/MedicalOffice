@@ -35,3 +35,11 @@ class MedicalRecordEntry(models.Model):
             
     def __str__(self):
         return f'{self.appointment.date}\n{self.content}'
+    
+class Document(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete = models.DO_NOTHING, null = True)
+    titulo = models.CharField(max_length = 100)
+    documento_location = models.FileField(upload_to='documentos')
+    
+    def __str__(self):
+        return self.titulo

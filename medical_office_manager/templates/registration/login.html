@@ -31,19 +31,19 @@
 
     {% if form.errors %}
         <div class="container-fluid text-center display:block">
-            <p>Username or password incorrect. Try again.</p>
+            <p>Usuério ou senha incorretos. Tente novamente.</p>
         </div>
     {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
             <div class="container-fluid text-center display:block">
-                <p>You don't have permission for this page</p>
+                <p>Você não tem permissão para ver essa página.</p>
             </div>    
         <p></p>
         {% else %}
             <div class="container-fluid text-center display:block">
-                <p>Please login to see this page</p>
+                <p>Por favor, faça login para ver essa página.</p>
             </div> 
         {% endif %}
     {% endif %}
