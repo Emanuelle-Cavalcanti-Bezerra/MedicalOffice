@@ -50,7 +50,7 @@
 
     <table>
         <tr>
-            <td style = "border: none; vertical-align: text-center">
+            <td style = "border: none; justify-content: center; text-align: center; align-items: center;">
                 <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
                     <form action = '{% url 'office:add_document_to_appointment' appointment_id=appointment.id%}' method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -65,7 +65,7 @@
                 </section>
             </td>
             
-            <td style = "border: none; vertical-align: text-top">
+            <td style = "border: none; horizontal-align: text-center">
                 <section style = "box-shadow: 1px 1px 5px 1px rgba(243, 123, 10, 0.94)">
                     <p> <strong>Documentos</strong></p>
                     
