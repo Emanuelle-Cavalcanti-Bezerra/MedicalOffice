@@ -100,7 +100,7 @@ def patient_medical_record(request: HttpRequest, patient_id):
    
     medical_record_entries = patient.medicalrecordentry_set.all()
 
-    appointments = patient.appointment_set.all().filter(date__lt=datetime.now())
+    appointments = patient.appointment_set.all().filter(date__lt=timezone.localdate())
     print('\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n')
     print(appointments)
     appointments_data = []
@@ -283,7 +283,11 @@ def appointments_list_assistant(request: HttpRequest, date):
         
         template_appointments.append(template_appointment)
     
-    data_corrente = timezone.now      
+    data_corrente = timezone.now  
+    print("**************** str(timezone.now) *************************")    
+    print(str(timezone.now()))
+    print("**************** str(timezone.localdate() *************************")    
+    print(str(timezone.localdate()))
     
     context = {
         'appointments': template_appointments,
@@ -340,9 +344,14 @@ def appointments_list_doctor(request: HttpRequest, date):
 @assistant_required    
 def schedule_appointment(request, date_time):
     date = date_time.split(" ")[0]
+    print("!!!!!!!!!!!!!!!!!!!!!!!! date = date_time.split(" ")[0] !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")    
+    print(date)
     time = date_time.split(" ")[1]
+    print("!!!!!!!!!!!!!!!!!!!!!!!! date = date_time.split(" ")[1] !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")    
+    print(time)
     patients = Patient.objects.all()
-    is_future_date_time = (date > str(datetime.date.today())) or ((date == str(datetime.date.today())) and (time > strftime("%H:%M:%S")))
+    #is_future_date_time = (date > str(datetime.date.today())) or ((date == str(datetime.date.today())) and (time > strftime("%H:%M:%S")))
+    is_future_date_time = (date > str(timezone.localdate())) or ((date == str(timezone.localdate())) and (time > strftime("%H:%M:%S")))
            
     context = {
         'date_display': format_date(date),
@@ -384,7 +393,8 @@ def appointment_successfully_scheduled(request, date_time):
 @assistant_required 
 def unschedule_appointment(request, appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
-    is_future_date_time = (str(appointment.date) > str(datetime.date.today())) or ((str(appointment.date) == str(datetime.date.today())) and (str(appointment.time) > strftime("%H:%M:%S")))
+    #is_future_date_time = (str(appointment.date) > str(datetime.date.today())) or ((str(appointment.date) == str(datetime.date.today())) and (str(appointment.time) > strftime("%H:%M:%S")))
+    is_future_date_time = (str(appointment.date) > str(timezone.localdate())) or ((str(appointment.date) == str(timezone.localdate())) and (str(appointment.time) > strftime("%H:%M:%S")))
     
     context = {
         'appointment': appointment,

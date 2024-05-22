@@ -1,5 +1,5 @@
 describe('test suite SeePatientMedicalRecord', () => {
-    it('Patient medical record is displayed clicking on patient CPF on patients list. Existing entry: "entrada de teste para consulta de João Dantas em 17/07/2024". ', () => {      
+    it('Patient medical record is displayed clicking on patient CPF on patients list. Existing entry: "entrada de teste para consulta de João Dantas em 17/05/2024". ', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_test_see_medical_record.py")
        
@@ -22,11 +22,11 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.contains('Nome: João Dantas').should('be.visible')  
         cy.contains('02367016062').should('be.visible')    
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')  
-        cy.contains('entrada de teste para consulta de João Dantas em 17/07/2024').should('be.visible')
+        cy.contains('entrada de teste para consulta de João Dantas em 17/05/2024').should('be.visible')
         cy.contains('Ir para detalhamento do paciente').should('be.visible') 
     })
 
-    it('Patient medical record is displayed clicking on patient patient name on patients list. Existing entry: "entrada de teste para consulta de João Dantas em 17/07/2024". ', () => {      
+    it('Patient medical record is displayed clicking on patient patient name on patients list. Existing entry: "entrada de teste para consulta de João Dantas em 17/05/2024". ', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_test_see_medical_record.py")
        
@@ -49,7 +49,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.contains('Nome: João Dantas').should('be.visible')  
         cy.contains('02367016062').should('be.visible') 
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')  
-        cy.contains('entrada de teste para consulta de João Dantas em 17/07/2024').should('be.visible')    
+        cy.contains('entrada de teste para consulta de João Dantas em 17/05/2024').should('be.visible')    
         cy.contains('Ir para detalhamento do paciente').should('be.visible')  
     })
     
@@ -76,9 +76,10 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.contains('Nome: João Dantas').should('be.visible') 
         cy.contains('02367016062').should('be.visible')    
         cy.contains('Data de nascimento: 17/07/2002').should('be.visible')
-        cy.get('#medicalRecordContent').should(($div) => {
+        cy.get('#medicalRecordRealContent').should(($div) => {
             const text = $div.text()
-            expect(text).not.to.include('Data da consulta')
+            //expect(text).not.to.include('Data da consulta')
+            expect(text).equal('')
           })     
         cy.contains('Ir para detalhamento do paciente').should('be.visible')  
     })
