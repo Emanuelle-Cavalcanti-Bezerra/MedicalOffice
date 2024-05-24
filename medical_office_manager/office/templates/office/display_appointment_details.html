@@ -35,6 +35,7 @@
     
     <section >
         <p> <strong>Entrada de prontuário</strong></p>
+        
         {%if medical_record_entry|length == 0 %}
             <form action = '{% url 'office:display_appointment_details' appointment_id=appointment.id%}' method="POST">
                 {% csrf_token %}
@@ -45,8 +46,23 @@
                 <button id="btSalvar" type="submit">Salvar</button>
                 <p> <br></p>
             </form>
+
+        {% elif hasToEdit%}
+            <form action = '{% url 'office:edit_medical_record_entry' appointment.id%}' method="POST">
+            {% csrf_token %}
+            <label for="new_medical_record_entry"><strong>Edite a entrada de prontuário desta consulta:</strong></label>
+            <br>
+            <textarea id="new_medical_record_entry" name="new_medical_record_entry" cols="60" rows="5">{{medical_record_entry.0.content}}</textarea>
+            <br><br>
+            <button id="btSalvar" type="submit">Salvar</button>
+            <p> <br></p>
+        </form>
+
         {% else%}
             {{medical_record_entry.0.content}}
+            <br><br>
+            <button id="btEditar" onclick="window.location='{% url 'office:edit_medical_record_entry' appointment.id%}'; return false;" >Editar</button>
+            <p> <br></p>
         {% endif %}
     </section>
 

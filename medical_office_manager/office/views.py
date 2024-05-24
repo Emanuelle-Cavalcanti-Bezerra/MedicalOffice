@@ -445,6 +445,78 @@ def display_appointment_details(request, appointment_id):
     
     return render(request, 'office/display_appointment_details.html', context)
 
+
+@login_required
+@doctor_required 
+def edit_medical_record_entry(request, appointment_id):
+    print("*******************  EDIT *************************")
+    appointment = Appointment.objects.get(id=appointment_id)
+    medical_record_entry = appointment.medicalrecordentry_set.all()
+    documentos = appointment.document_set.all()
+    
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(medical_record_entry)
+    print(medical_record_entry[0].content)
+        
+    if(request.method == "POST"):
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        post_data = request.POST
+        new_medical_record_entry_content = post_data.get('new_medical_record_entry')
+        
+        print(new_medical_record_entry_content)
+        
+        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].id}")
+        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
+        
+        
+        medical_record_entry[0].content = new_medical_record_entry_content
+        #medical_record_entry[0].save()
+        update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
+        
+        teste = MedicalRecordEntry.objects.get(id=medical_record_entry[0].id)
+        print(f"############# DEPOIS DO SAVE {teste.content}")
+        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
+        
+        medical_record_entry2 = appointment.medicalrecordentry_set.all()
+        
+        context2= {
+        'appointment': appointment,
+        'medical_record_entry': medical_record_entry2,
+        'documentos': documentos,
+        'teste': "testando contexto de edição!!!!!!!!"
+        }
+
+        return render(request, 'office/display_appointment_details.html', context2)
+    
+    context= {
+        'appointment': appointment,
+        'medical_record_entry': medical_record_entry,
+        'documentos': documentos,
+        'hasToEdit': True
+    }
+    return render(request, 'office/display_appointment_details.html', context)
+
+def update_medical_record_entry_content(id, content):
+    from sys import platform
+    import sqlite3 as sql 
+    
+    if platform == "win32":
+        # CAMINHO PARA RODAR TESTE LOCALMENTE
+        dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+    else:
+        # CAMINHO PARA RODAR TESTE NO GITHUB
+        dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"  
+        
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+    
+    cursor.execute(f"UPDATE office_medicalrecordentry SET content = '{content}' WHERE id = {id}")
+    
+    connection.commit()
+    connection.close()
+    
+
 @login_required
 @doctor_required 
 def add_document_to_appointment(request, appointment_id):
