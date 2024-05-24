@@ -559,12 +559,19 @@ def add_document_to_appointment(request, appointment_id):
     if (documento_location == None):
         return redirect(f'/office/display_appointment_details/{appointment_id}')
     
-
-    
-    
     documento = Document(appointment = appointment, titulo=titulo, documento_location = documento_location)
     documento.save()
     
+    return redirect(f'/office/display_appointment_details/{appointment_id}')
+
+@login_required
+@doctor_required 
+def delete_document_from_appointment(request, appointment_id, document_id):
+    
+    if request.method == 'POST':
+        document = Document.objects.get(id=document_id)
+        document.delete()
+         
     return redirect(f'/office/display_appointment_details/{appointment_id}')
 
 

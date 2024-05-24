@@ -90,8 +90,14 @@
         
         <ul>
         {% for documento in documentos%}
-        <a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}"><strong>-</strong> {{documento.titulo}}</a>
-        <br>
+            <a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}"><strong>-</strong> {{documento.titulo}}</a>
+
+            <form action='{% url 'office:delete_document_from_appointment' appointment.id documento.id%}' method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+            </form>
+
+            <br>
         {% endfor %}
     </ul>
     </section>

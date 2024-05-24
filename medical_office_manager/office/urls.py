@@ -26,6 +26,7 @@ urlpatterns = [
     path('register_user/', views.register_user, name='register_user'),
     path('add_document_to_appointment/<int:appointment_id>/', views.add_document_to_appointment, name='add_document_to_appointment'),
     path('edit_medical_record_entry/<int:appointment_id>/', views.edit_medical_record_entry, name='edit_medical_record_entry'),
+    path('delete_document_from_appointment/<int:appointment_id>/<int:document_id>/', views.delete_document_from_appointment, name='delete_document_from_appointment'),
     
  
 ]
