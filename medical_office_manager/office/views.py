@@ -468,15 +468,21 @@ def edit_medical_record_entry(request, appointment_id):
         
         print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].id}")
         print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
+        print(type(medical_record_entry[0]))
+        print(type(medical_record_entry[0].content))
         
-        
-        medical_record_entry[0].content = new_medical_record_entry_content
+        #medical_record_entry[0].content = new_medical_record_entry_content # NÃO FUNCIONA!!!!!!!!!!
+        medical_record_entry[0].atualizar_content(new_medical_record_entry_content)
+        print(f"SSSSSSSSSSSSSSSSSSSSSSSSSSS {medical_record_entry[0].content}")
         medical_record_entry[0].save()
         #update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
         
         teste = MedicalRecordEntry.objects.get(id=medical_record_entry[0].id)
         print(f"############# DEPOIS DO SAVE {teste.content}")
         print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
+        teste.content = new_medical_record_entry_content
+        print(f"############# TESTANDO {teste.content}")
+        teste.save()
         
         medical_record_entry2 = appointment.medicalrecordentry_set.all()
         
@@ -525,7 +531,6 @@ def update_medical_record_entry_content(id, content):
         database="postgres",
         user='postgres',
         password='password',
-        host='localhost',
         port= '5432'
         )
         
