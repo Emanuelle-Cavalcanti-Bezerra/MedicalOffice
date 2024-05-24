@@ -450,39 +450,21 @@ def display_appointment_details(request, appointment_id):
 @login_required
 @doctor_required 
 def edit_medical_record_entry(request, appointment_id):
-    print("*******************  EDIT *************************")
     appointment = Appointment.objects.get(id=appointment_id)
     medical_record_entry = appointment.medicalrecordentry_set.all()
     documentos = appointment.document_set.all()
     
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(medical_record_entry)
-    print(medical_record_entry[0].content)
-        
+       
     if(request.method == "POST"):
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         post_data = request.POST
         new_medical_record_entry_content = post_data.get('new_medical_record_entry')
         
-        print(new_medical_record_entry_content)
-        
-        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].id}")
-        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
-        print(type(medical_record_entry[0]))
-        print(type(medical_record_entry[0].content))
-        
-        #medical_record_entry[0].content = new_medical_record_entry_content # NÃO FUNCIONA!!!!!!!!!!
-        medical_record_entry[0].atualizar_content(new_medical_record_entry_content)
-        print(f"SSSSSSSSSSSSSSSSSSSSSSSSSSS {medical_record_entry[0].content}")
         medical_record_entry[0].save()
         #update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
         
-        teste = MedicalRecordEntry.objects.get(id=medical_record_entry[0].id)
-        print(f"############# DEPOIS DO SAVE {teste.content}")
-        print(f"&&&&&&&&&&&&&&&&&&& {medical_record_entry[0].content}")
-        teste.content = new_medical_record_entry_content
-        print(f"############# TESTANDO {teste.content}")
-        teste.save()
+        new_medical_record_entry = MedicalRecordEntry.objects.get(id=medical_record_entry[0].id)
+        new_medical_record_entry.content = new_medical_record_entry_content
+        new_medical_record_entry.save()
         
         medical_record_entry2 = appointment.medicalrecordentry_set.all()
         
@@ -490,7 +472,6 @@ def edit_medical_record_entry(request, appointment_id):
         'appointment': appointment,
         'medical_record_entry': medical_record_entry2,
         'documentos': documentos,
-        'teste': "testando contexto de edição!!!!!!!!"
         }
 
         return render(request, 'office/display_appointment_details.html', context2)
