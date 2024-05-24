@@ -43,3 +43,7 @@ class Document(models.Model):
     
     def __str__(self):
         return self.titulo
+    
+    def delete(self, *args, **kwargs):
+        self.documento_location.delete()
+        super().delete(*args, **kwargs)
