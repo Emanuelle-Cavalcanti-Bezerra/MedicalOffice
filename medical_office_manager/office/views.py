@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.db.models import Q
 from . decorators import assistant_required, doctor_required
+from django.conf import settings
 
 # Create your views here.
 
@@ -497,24 +498,51 @@ def edit_medical_record_entry(request, appointment_id):
     return render(request, 'office/display_appointment_details.html', context)
 
 def update_medical_record_entry_content(id, content):
-    from sys import platform
-    import sqlite3 as sql 
-    
-    if platform == "win32":
-        # CAMINHO PARA RODAR TESTE LOCALMENTE
-        dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
-    else:
-        # CAMINHO PARA RODAR TESTE NO GITHUB
-        dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"  
+    if (settings.NOT_PROD):
+        from sys import platform
+        import sqlite3 as sql 
         
-    connection = sql.connect(dbpath)
-    cursor = connection.cursor()
-    connection.row_factory = sql.Row
-    
-    cursor.execute(f"UPDATE office_medicalrecordentry SET content = '{content}' WHERE id = {id}")
-    
-    connection.commit()
-    connection.close()
+        if platform == "win32":
+            # CAMINHO PARA RODAR TESTE LOCALMENTE
+            dbpath = r"C:\Users\emanu\Desktop\PYTHON\Django\MedicalOffice\medical_office_manager\db.sqlite3"
+        else:
+            # CAMINHO PARA RODAR TESTE NO GITHUB
+            dbpath = "/home/runner/work/MedicalOffice/MedicalOffice/medical_office_manager/db.sqlite3"  
+            
+        connection = sql.connect(dbpath)
+        cursor = connection.cursor()
+        connection.row_factory = sql.Row
+        
+        cursor.execute(f"UPDATE office_medicalrecordentry SET content = '{content}' WHERE id = {id}")
+        
+        connection.commit()
+        connection.close()
+        
+    else:
+        import psycopg2
+        from config import load_config
+        
+        updated_row_count = 0
+
+        sql = """ UPDATE office_medicalrecordentry
+                    SET content = %s
+                    WHERE id = %s"""
+        
+        config = load_config()
+        
+        with  psycopg2.connect(**config) as conn:
+            with  conn.cursor() as cur:
+                
+                # execute the UPDATE statement
+                cur.execute(sql, (content, id))
+                updated_row_count = cur.rowcount
+
+            # Commit your changes in the database
+            conn.commit()
+ 
+            # Closing the connection
+            conn.close()# code
+        
     
 
 @login_required
