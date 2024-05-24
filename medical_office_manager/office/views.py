@@ -471,8 +471,8 @@ def edit_medical_record_entry(request, appointment_id):
         
         
         medical_record_entry[0].content = new_medical_record_entry_content
-        #medical_record_entry[0].save()
-        update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
+        medical_record_entry[0].save()
+        #update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
         
         teste = MedicalRecordEntry.objects.get(id=medical_record_entry[0].id)
         print(f"############# DEPOIS DO SAVE {teste.content}")
@@ -520,28 +520,24 @@ def update_medical_record_entry_content(id, content):
         
     else:
         import psycopg2
-        from config import load_config
         
-        updated_row_count = 0
+        conn = psycopg2.connect(
+        database="postgres",
+        user='postgres',
+        password='password',
+        host='localhost',
+        port= '5432'
+        )
+        
+        cursor = conn.cursor()
 
-        sql = """ UPDATE office_medicalrecordentry
-                    SET content = %s
-                    WHERE id = %s"""
-        
-        config = load_config()
-        
-        with  psycopg2.connect(**config) as conn:
-            with  conn.cursor() as cur:
-                
-                # execute the UPDATE statement
-                cur.execute(sql, (content, id))
-                updated_row_count = cur.rowcount
+        cursor.execute(f"UPDATE office_medicalrecordentry SET content = '{content}' WHERE id = {id}")
 
-            # Commit your changes in the database
-            conn.commit()
- 
-            # Closing the connection
-            conn.close()# code
+        # Commit your changes in the database
+        conn.commit()
+
+        # Closing the connection
+        conn.close()# code
         
     
 
