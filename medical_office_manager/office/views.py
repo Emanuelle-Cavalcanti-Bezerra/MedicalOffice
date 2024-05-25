@@ -591,10 +591,11 @@ def add_document_to_appointment(request, appointment_id):
     
     return redirect(f'/office/display_appointment_details/{appointment_id}')
 
+
 @login_required
 @doctor_required 
-def delete_document_from_appointment(request, appointment_id, document_id):
-    
+def confirm_delete_document_from_appointment(request, appointment_id, document_id):
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     if request.method == 'POST':
         document = Document.objects.get(id=document_id)
         document.delete()
@@ -602,16 +603,18 @@ def delete_document_from_appointment(request, appointment_id, document_id):
     return redirect(f'/office/display_appointment_details/{appointment_id}')
 
 
-def create_system_manager(request):
-    if (request.method == 'POST'):
-        username = request.POST.get('username').strip()
-        email = request.POST.get('email').strip()
-        password = request.POST.get('password').strip()
-        
-        system_manager = UserManager.create_superuser(username, email, password)
-        return redirect('login')
-    
-    return render (request, 'office/create_system_manager.html')
+@login_required
+@doctor_required 
+def delete_document_from_appointment(request, appointment_id, document_id):
+    print("#################################################")
+
+    context = {
+        "appointment": Appointment.objects.get(id=appointment_id),
+        "documento": Document.objects.get(id=document_id)
+    }
+         
+    return render(request, 'office/delete_document_from_appointment.html', context)
+
 
 @login_required
 @manager_required
