@@ -68,13 +68,6 @@
         &emsp;&emsp;
         <button type="submit" onclick="window.location.href='/accounts/login/'; return false;" >Cancelar</button>
         
-        <br><br><br><br>
-        &emsp;&emsp;
-        Não tem cadastro?
-        <br><br>
-        &emsp;&emsp;
-        <button type="submit" onclick="window.location='{% url 'office:register_user'%}'; return false;" >Cadastrar</button>
-
         <input type="hidden" name='next' value= "{{next}}">
     </div>
 
