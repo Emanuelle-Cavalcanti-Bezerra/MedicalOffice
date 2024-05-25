@@ -1,0 +1,58 @@
+{% extends "office/base_manager.html" %}
+
+{% block content %}
+    
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #ffe6d7;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #ffe6d7;
+      }
+      </style>
+    
+    <br> 
+    
+    <div class="container-fluid text-center display:block">
+        <p><strong>LISTA DE USUÁRIOS</strong></p>
+        <br>
+    
+     
+        <div>
+            <table class="container-fluid text-center display:block">
+                <tr>
+                    <th>Nome de usuário</th>
+                    <th>email</th>
+                    <th>grupo</th>
+                </tr>
+                {% for user_group in users_groups%}
+                <tr>
+                  <td>
+                      <span style = "color: black">{{user_group.0.username}}</span>
+                  </td>
+    
+                  <td>
+                      <span style = "color: black">{{user_group.0.email}}</span>
+                  </td>
+
+                  <td>
+                    <span style = "color: black">{{user_group.1.name}}</span>
+                </td>
+                </tr>
+                {% endfor %}
+    
+    
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

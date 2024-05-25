@@ -5,6 +5,7 @@ app_name = 'office'
 
 urlpatterns = [
     path('home_router/', views.home_router, name = 'home_router'),
+    path('home_manager/', views.home_manager, name = 'home_manager'),
     path('home_doctor/', views.home_doctor, name = 'home_doctor'),
     path('home_assistant/', views.home_assistant, name = 'home_assistant'),
     path('list_patients_assistant/', views.list_patients_for_assistant, name = 'list_patients_assistant'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('add_document_to_appointment/<int:appointment_id>/', views.add_document_to_appointment, name='add_document_to_appointment'),
     path('edit_medical_record_entry/<int:appointment_id>/', views.edit_medical_record_entry, name='edit_medical_record_entry'),
     path('delete_document_from_appointment/<int:appointment_id>/<int:document_id>/', views.delete_document_from_appointment, name='delete_document_from_appointment'),
+    path('list_system_users/', views.list_system_users, name='list_system_users'),
     
  
 ]

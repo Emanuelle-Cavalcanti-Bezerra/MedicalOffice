@@ -5,42 +5,88 @@ from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from .models import Patient, Appointment, MedicalRecordEntry,Document
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group, User, UserManager
 from django.db.models import Q
-from . decorators import assistant_required, doctor_required
+from . decorators import assistant_required, doctor_required, manager_required
 from django.conf import settings
 
 # Create your views here.
 
 def identify_user_group(request):
+    
     user_id = request.user.id
-    group = Group.objects.filter(Q(user=user_id))[0]
+    group_query = request.user.groups.all()
+    #group_query =  Group.objects.filter(Q(user=user_id))[0]
+    print("!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(group_query[0])
+    print("@@@@@@@@@@@@@@@@@@@@@@@")
+    print(group_query[0].id)
+    groupTeste = Group.objects.get(id=group_query[0].id)
+    print("KKKKKKKKKKKKKKKKKKKKKKKK")
+    print(groupTeste.name)
+    
+    #patient.appointment_set.all().filter(date__lt=timezone.localdate())
+    #group = Group.objects.filter(Q(user=user_id))[0]
 
-    return group.name
+    #return group.name
+    return groupTeste.name
 
 
 @login_required
 def home_router(request: HttpRequest):
-    user_group = identify_user_group(request)
-
+    print("****************************")
+    print(request.user.is_superuser)
+    user_group = None
+    if (request.user.is_superuser==False):
+        user_group = identify_user_group(request)
+    
     if(user_group == "assistentes"):
         return home_assistant(request)
     elif (user_group == "médicos"):
         return home_doctor(request)
+    elif (request.user.is_superuser):
+        return home_manager(request)
     else:
         return HttpResponse("Você não está logado")
+
+
+@login_required
+@manager_required
+def home_manager(request):   
+    return render(request, 'office/home_manager.html')
     
     
 @login_required
 @doctor_required
-def home_doctor(request):
-        
+def home_doctor(request):    
     return render(request, 'office/home_doctor.html')
 
 @login_required
 @assistant_required
 def home_assistant(request):
     return render(request, 'office/home_assistant.html')
+
+@login_required
+@manager_required
+def list_system_users(request):
+    users = User.objects.all()
+
+    users_groups = []  
+   
+    for user in users:
+        if (user.is_superuser==False):
+            group_query = user.groups.all()
+            group_id = group_query[0].id
+            group = Group.objects.get(id=group_id)
+
+            users_groups.append([user, group])
+    
+    context = {
+            'users_groups': users_groups
+        }
+    
+    
+    return render(request, 'office/list_system_users.html', context)
 
 
 @login_required
@@ -556,8 +602,19 @@ def delete_document_from_appointment(request, appointment_id, document_id):
     return redirect(f'/office/display_appointment_details/{appointment_id}')
 
 
+def create_system_manager(request):
+    if (request.method == 'POST'):
+        username = request.POST.get('username').strip()
+        email = request.POST.get('email').strip()
+        password = request.POST.get('password').strip()
+        
+        system_manager = UserManager.create_superuser(username, email, password)
+        return redirect('login')
+    
+    return render (request, 'office/create_system_manager.html')
 
-
+@login_required
+@manager_required
 def register_user(request):
     
     if(request.method == 'POST'):
@@ -624,7 +681,7 @@ def register_user(request):
             print("*******CADASTRO COM SUCESSO*********")
             print(f'USUÁRIO: {user.username}\nGROUP: {group.name}')
                     
-            return redirect('login')
+            return redirect('office:list_system_users')
             #return HttpResponse('USUÁRIO CRIADO COM SUCESSO')
    
     return render (request, 'office/register_user.html')

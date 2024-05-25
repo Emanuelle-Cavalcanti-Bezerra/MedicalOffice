@@ -1,25 +1,6 @@
-{% load static%}
+{% extends "office/base_manager.html" %}
 
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'office/logoblack.png' %}" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-    <title>Medical Office</title>
-</head>
-<body>
-    
-    <nav class="navbar-header py-3" style="background-color:#ff670f; ">
-        <div class="container-fluid text-center display:block">
-            <img class="logo" src="{% static 'office/logowhite.png' %}" style="height: 30px; width: 80px; max-width: fit-content;">
-            <span class="navbar-brand mb-0 h1" style = "color: white">
-                <h1>MEDICAL OFFICE</h1>
-            </span>
-        </div>
-    </nav> 
+{% block content %}
 
     <div class="container-fluid text-center display:block">
         <br>
@@ -78,12 +59,9 @@
     
             &emsp;&emsp;
             <button type="submit">Cadastrar</button>
-            &emsp;&emsp;
-            <button onclick="window.location='{% url 'login'%}'; return false;" >Voltar para login</button>
+
         </div>     
     </form>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>
+    {% endblock %}
