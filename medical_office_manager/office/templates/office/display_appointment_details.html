@@ -88,34 +88,21 @@
     <section >
         <p> <strong>Documentos</strong></p>
         
-        <ul>
+        
         {% for documento in documentos%}
+          
             <a id="documento_titulo" style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}"><strong>-</strong> {{documento.titulo}}</a>
-            <br><br>
-            <form id="form_deletar_documento"  method="POST">
-                {% csrf_token %}
-                <button type="submit" id="bt_deletar" class="btn btn-danger btn-sm" onclick="funcao1();">Deletar</button>
-            </form>
-
             <br>
 
-            <script>
-                function funcao1()
-                {
-                
-                var r=confirm("Tem certeza que deseja apagar esse documento?");
-                if (r==true)
-                  {
-                    document.getElementById("form_deletar_documento").setAttribute("action", "/office/delete_document_from_appointment/{{appointment.id}}/{{documento.id}}/");
-                  }
-                else
-                  {
-                    document.getElementById("form_deletar_documento").setAttribute("action", "/office/display_appointment_details/{{appointment.id}}/");
-                  }
-                }
-                </script>
+            <button onclick="window.location='{% url 'office:delete_document_from_appointment' appointment.id documento.id%}'; return false;" >Deletar</button>
+         
+            <br><br>
+
         {% endfor %}
-    </ul>
+
+        
+    
+
     </section>
 
     <hr>
