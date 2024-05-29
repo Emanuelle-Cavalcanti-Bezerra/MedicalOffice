@@ -50,11 +50,11 @@
         {% elif hasToEdit%}
             <form action = '{% url 'office:edit_medical_record_entry' appointment.id%}' method="POST">
             {% csrf_token %}
-            <label for="new_medical_record_entry"><strong>Edite a entrada de prontuário desta consulta:</strong></label>
+            <label for="edited_medical_record_entry"><strong>Edite a entrada de prontuário desta consulta:</strong></label>
             <br>
-            <textarea id="new_medical_record_entry" name="new_medical_record_entry" cols="60" rows="5">{{medical_record_entry.0.content}}</textarea>
+            <textarea id="edited_medical_record_entry" name="edited_medical_record_entry" cols="60" rows="5">{{medical_record_entry.0.content}}</textarea>
             <br><br>
-            <button id="btSalvar" type="submit">Salvar</button>
+            <button id="btSalvarEditedEntry" type="submit">Salvar</button>
             <p> <br></p>
         </form>
 
