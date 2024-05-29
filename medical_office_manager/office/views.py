@@ -503,7 +503,7 @@ def edit_medical_record_entry(request, appointment_id):
        
     if(request.method == "POST"):
         post_data = request.POST
-        new_medical_record_entry_content = post_data.get('new_medical_record_entry')
+        new_medical_record_entry_content = post_data.get('edited_medical_record_entry')
         
         medical_record_entry[0].save()
         #update_medical_record_entry_content(medical_record_entry[0].id, new_medical_record_entry_content)
