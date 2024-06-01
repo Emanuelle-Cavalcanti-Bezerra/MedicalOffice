@@ -1,7 +1,7 @@
 describe('test suite SeePatientMedicalRecord', () => {
-    it('Patient medical record entry is edited. Edited entry: "entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h EDITADA. ', () => {      
+    it('A document is added to an appointment. Appointment data: consulta de João Dantas em 17/05/2024 às 08:00h. Document title: "Raio-X" ', () => {      
         // Executar setup de preparação para o teste
-        cy.exec("python scripts/setup_test_edit_medical_record_entry.py")
+        cy.exec("python scripts/setup_add_document_to_appointment.py")
        
         // Acessar página de home do médico
         cy.visit('/office/home_doctor/');
@@ -21,18 +21,16 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Clicar em "Ver" na linha do horário 08:00
         cy.get('#bt08').click()
 
-        // Clicar em "Editar"
-        cy.get('#btEditar').click()
+        // Digitar o título do documento
+        cy.get('[name="ipt_title_document"]').type('Raio-X')
+        // Selecionar o documento a ser adicionado      
+        cy.get('#ipt_add_document_to_appointment').selectFile('cypress/fixtures/raio_x.jpg')
+        // Adicionar o documento 
+        cy.get('#btAdicionar').click()
 
-        // Preencher e capturar o conteúdo da nova entrada de prontuário editada
-        cy.get('[name="edited_medical_record_entry"]').type(' EDITADA')
-        cy.get('#btSalvarEditedEntry').click()
-
-        // Verificar se a entrada de prontuário editada agora consta na página de detalhes da consulta
-        cy.get('#medicalRecordEntryContent').should(($div) => {
-            expect($div.text().trim()).equal("entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h. EDITADA");
-          });
-
+        cy.get('#Raio-X').invoke("text").should("eq", "- Raio-X")
+        cy.get("#btDeletarRaio-X").invoke("val").should("eq", "Deletar")
+      
         // Abrir prontuário completo do paciente
         cy.get('#btVerProntuario').click()
 
@@ -42,8 +40,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('#patientCPF').invoke("text").should("eq", "CPF: 02367016062")
         cy.get('#patientBirthDate').invoke("text").should("eq", "Data de nascimento: 17/07/2002")
         cy.get('#appointmentDate').invoke("text").should("eq", "Data da consulta: 17 de Maio de 2024")
-        cy.get('#medicalRecordRealContent').should(($div) => {
-            expect($div.text().trim()).equal("entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h. EDITADA");
-          });
+        cy.get('#Raio-X').invoke("text").should("eq", "Raio-X")
+      
     })
 })

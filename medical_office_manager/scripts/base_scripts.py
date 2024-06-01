@@ -32,10 +32,20 @@ def add_doctor():
     cursor.execute("INSERT INTO auth_group (name) VALUES ('médicos')")
     group_id = cursor.lastrowid
 
-    cursor.execute("INSERT INTO auth_user (password, username, email, is_superuser, last_name, is_staff, is_active, date_joined, first_name) VALUES ('pbkdf2_sha256$600000$pBn6brnFz95LZWhw423oQy$c1irwtMTw9UpnxaKsa0VfG/dgNsOzFmfEYH0aDYQBrk=', 'medico1', '', 0, '', 0, 1, '2024-05-04 03:13:38.301481', '')")
+    cursor.execute("INSERT INTO auth_user (password, username, email, is_superuser, last_name, is_staff, is_active, date_joined, first_name) VALUES ('pbkdf2_sha256$600000$pBn6brnFz95LZWhw423oQy$c1irwtMTw9UpnxaKsa0VfG/dgNsOzFmfEYH0aDYQBrk=', 'medico1', '', 0, '', 1, 1, '2024-05-04 03:13:38.301481', '')")
     doctor_id = cursor.lastrowid
 
     cursor.execute(f"INSERT INTO auth_user_groups (user_id, group_id) VALUES ({doctor_id}, {group_id})")
+
+    connection.commit()
+    
+def add_manager():
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+
+    cursor.execute("INSERT INTO auth_user (password, username, email, is_superuser, last_name, is_staff, is_active, date_joined, first_name) VALUES ('pbkdf2_sha256$600000$pBn6brnFz95LZWhw423oQy$c1irwtMTw9UpnxaKsa0VfG/dgNsOzFmfEYH0aDYQBrk=', 'admin', 'admin@gmail.com', 1, '', 1, 1, '2024-05-04 03:13:38.301481', '')")
+    doctor_id = cursor.lastrowid
 
     connection.commit()
     
@@ -97,6 +107,20 @@ def add_medical_record_entry(content, date, time, cpf):
     cursor.execute(f"INSERT INTO office_medicalrecordentry (content, appointment_id, patient_id) VALUES ('{content}', {appointment_id}, {patient_id})")
         
     connection.commit()
+
+
+def add_document_to_appointment(date, time, doc_title, doc_location):
+    connection = sql.connect(dbpath)
+    cursor = connection.cursor()
+    connection.row_factory = sql.Row
+    
+    appointment_id  = get_appointment_id(date, time)
+    print("@@@@@@@@@@@@@@@@@@@@@@@@")
+    print(appointment_id)
+           
+    cursor.execute(f"INSERT INTO office_document (titulo, documento_location, appointment_id) VALUES ('{doc_title}', '{doc_location}', {appointment_id})")
+        
+    connection.commit()
     
     
 def get_patient_id(cpf):
@@ -124,12 +148,12 @@ def get_appointment_id(date, time):
     cursor.execute(f"SELECT id FROM office_appointment WHERE date = '{date}' AND time = '{time}'")
     
     busca = list(cursor.fetchall())
-    apointment_id =  int(str(busca[0]).replace("(","").replace(")","").replace(",",""))
+    appointment_id =  int(str(busca[0]).replace("(","").replace(")","").replace(",",""))
     
-    print(apointment_id)
+    print(appointment_id)
     
     connection.commit()
     
-    return apointment_id
+    return appointment_id
     
    
