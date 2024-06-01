@@ -4,16 +4,16 @@
 
 <div class="container-fluid text-center display:block">
     <br>
-    <p><strong>PRONTUÁRIO DO PACIENTE</strong></p>
+    <p id="pageName" ><strong>PRONTUÁRIO DO PACIENTE</strong></p>
     <br>
 </div>
 
 <div class="container-fluid text-center display:block">
-    <strong>Nome: {{patient.name}}</strong>
+    <span id="patientName"><strong>Nome: {{patient.name}}</strong></span>
     <br>
-    <strong>CPF: {{patient.CPF}}</strong>
+    <span id="patientCPF"><strong>CPF: {{patient.CPF}}</strong></span>
     <br>
-    <strong>Data de nascimento: {{birth_date}}</strong>
+    <span id="patientBirthDate"><strong>Data de nascimento: {{birth_date}}</strong></span>
     <br>
 </div>
      
@@ -23,16 +23,16 @@
     {%for appointment_data in appointments_data%}
         
 
-                &emsp;&emsp;<strong>Data da consulta: {{appointment_data.0.date}}</strong>
+                &emsp;&emsp;<span id="appointmentDate"><strong>Data da consulta: {{appointment_data.0.date}}</strong></span>
                 <br>
                 &emsp;&emsp;<div id="medicalRecordRealContent">{{appointment_data.1}}</div>
                 <br>
                 &emsp;&emsp;&emsp;&emsp;
                 
-                <ul>
+                <ul id="documentsList" >
                 {%for documento in appointment_data.2%}
                     <li>
-                        <a style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}">{{documento.titulo}}</a>
+                        <a  id="{{documento.titulo}}" style = "text-decoration:none; color: black" href="{{documento.documento_location.url}}">{{documento.titulo}}</a>
                     </li>
                 {% endfor %}
                 </ul>

@@ -23,12 +23,12 @@
     <br> 
     
     <div class="container-fluid text-center display:block">
-        <p><strong>LISTA DE USUÁRIOS</strong></p>
+        <p id="pageName" ><strong>LISTA DE USUÁRIOS</strong></p>
         <br>
     
      
         <div>
-            <table class="container-fluid text-center display:block">
+            <table id="tbUsersList" class="container-fluid text-center display:block">
                 <tr>
                     <th>Nome de usuário</th>
                     <th>email</th>
@@ -36,7 +36,7 @@
                 </tr>
                 {% for user_group in users_groups%}
                 <tr>
-                  <td>
+                  <td id="{{'username'|add:user_group.0.username}}">
                       <span style = "color: black">{{user_group.0.username}}</span>
                   </td>
     

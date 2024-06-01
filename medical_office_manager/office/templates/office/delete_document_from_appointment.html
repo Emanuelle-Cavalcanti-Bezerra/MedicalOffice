@@ -10,12 +10,12 @@
     <form id="form_deletar_documento" action='{% url 'office:confirm_delete_document_from_appointment' appointment.id documento.id%}' method="POST">
         {% csrf_token %}
         
-        <button type="submit" id="bt_deletar"  data-bs-dismiss="modal" style = "background: red" >Confirmar deleção</button>
+        <button type="submit" id="bt_deletar" style = "background: red" >Confirmar deleção</button>
     </form>
 
     <br><br>
 
-    <button onclick="window.location='{% url 'office:display_appointment_details' appointment.id%}'; return false;" >Cancelar</button>
+    <button id="btCancelar" onclick="window.location='{% url 'office:display_appointment_details' appointment.id%}'; return false;" >Cancelar</button>
 </div>
 
 {% endblock %}

@@ -4,7 +4,7 @@
 
     <div class="container-fluid text-center display:block">
         <br>
-        <p><strong>CADASTRAR USUÁRIO</strong></p>
+        <p id="pageName" ><strong>CADASTRAR USUÁRIO</strong></p>
         <br>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="container-fluid text-center display:block">
 
             {% if errors.empty_fields %}
-                    <div class="alert alert-warning" role="alert">
+                    <div id="empty_fields" class="alert alert-warning" role="alert">
                         <b>{{ errors.empty_fields }}</b></p>
                         <br>
                     </div>
@@ -22,27 +22,27 @@
     
 
             {% if errors.senhas_nao_conferem %}
-                    <div class="alert alert-warning" role="alert">
+                    <div id="senhas_nao_conferem" class="alert alert-warning" role="alert">
                         <b>{{ errors.senhas_nao_conferem }}</b></p>
                         <br>
                     </div>
             {% endif %}
     
             {% if errors.senha_menor_que_6_digitos %}
-                <div class="alert alert-warning" role="alert">    
+                <div id="senha_menor_que_6_digitos" class="alert alert-warning" role="alert">    
                     <b>{{ errors.senha_menor_que_6_digitos }}</b></p>
                     <br>
                 </div>
             {% endif %}
     
             {% if errors.username_ja_cadastrado %}
-                <div class="alert alert-warning" role="alert">    
+                <div id="username_ja_cadastrado" class="alert alert-warning" role="alert">    
                     <b>{{ errors.username_ja_cadastrado }}</b></p>
                     <br>
                 </div>
             {% endif %}
         
-            Nome de usuário: <input type="text" name="username">
+            Nome de usuário: <input id="username" type="text" name="username">
             <br><br>
             Email: <input type="Email" id='email' name='email'>
             <br><br>        
@@ -58,7 +58,7 @@
             <br><br>
     
             &emsp;&emsp;
-            <button type="submit">Cadastrar</button>
+            <button id="btRegister" type="submit">Cadastrar</button>
 
         </div>     
     </form>
