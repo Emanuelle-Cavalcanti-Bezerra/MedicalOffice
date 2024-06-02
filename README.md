@@ -129,7 +129,7 @@ Emanuelle Cavalcanti Bezerra
 #### Screencasts:
 ###### Protótipo Figma - https://youtu.be/NoCPfjymgZ0
 ###### Site - https://youtu.be/DDckcOIzMb4
-###### Pipeline de build com testes e deploy - https://youtu.be/DOfxzs-r9XM
+###### Pipeline de build com testes e deploy - https://youtu.be/SrxrW8GBTJM
 ###### Testes com Cypress - https://youtu.be/GL2hVtRnIXM
 
 </details>
