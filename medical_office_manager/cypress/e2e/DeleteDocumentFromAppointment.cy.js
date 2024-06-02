@@ -1,5 +1,5 @@
 describe('test suite SeePatientMedicalRecord', () => {
-    it('A document is delete from an appointment. Appointment data: consulta de João Dantas em 17/05/2024 às 08:00h. Document title: "Hemograma" ', () => {      
+    it('A document is deleted from an appointment. Appointment data: consulta de João Dantas em 17/05/2024 às 08:00h. Document title: "Hemograma" ', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_delete_document_from_appointment.py")
        
@@ -14,7 +14,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Clicar na opção "Consultas" na navbar da home
         cy.get('#appointmentsListDoctor').click()
 
-        // selecionar a data da consulta cuja entrada de prontuário se deseja editar
+        // selecionar a data da consulta da qual se deseja deletar um documento
         cy.get('#inputDataConsultas').type('2024-05-17')
         cy.get('#btBuscarDataConsultas').click()
 
@@ -26,11 +26,21 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Confirmar a deleção
         cy.get("#bt_deletar").click()
+
+        // Verificar que o documento "Hemograma" não consta mais no detalhamento da consulta
+        cy.get('#pageName').invoke("text").should("eq", "DETALHAMENTO DE CONSULTA")
+        cy.get('#appointmentDate').invoke("text").should("eq", "Data: 17 de Maio de 2024")
+        cy.get('#appointmentHour').invoke("text").should("eq", "Hora: 08:00")
+        cy.get('#patientNameCPF').invoke("text").should("eq", "Paciente: João Dantas (CPF 02367016062)")
+        cy.get('#documentsList').should(($section) => {
+            const text = $section.text()
+            expect(text).not.to.include('Hemograma')
+        })
         
         // Abrir prontuário completo do paciente
         cy.get('#btVerProntuario').click()
 
-        // Verificar que o documento "Hemograma" não consta mais no prontuário
+        // Verificar que o documento "Hemograma" não consta mais no prontuário do paciente
         cy.get('#pageName').invoke("text").should("eq", "PRONTUÁRIO DO PACIENTE")
         cy.get('#patientName').invoke("text").should("eq", "Nome: João Dantas")
         cy.get('#patientCPF').invoke("text").should("eq", "CPF: 02367016062")

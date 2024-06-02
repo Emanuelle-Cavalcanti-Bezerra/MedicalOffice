@@ -1,5 +1,5 @@
 describe('test suite SeePatientMedicalRecord', () => {
-    it('Patient medical record entry is edited. Edited entry: "entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h EDITADA. ', () => {      
+    it('Patient medical record entry is edited. Existing entry: "entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h". New edited entry: "entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h EDITADA." ', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_test_edit_medical_record_entry.py")
        
@@ -29,9 +29,13 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('#btSalvarEditedEntry').click()
 
         // Verificar se a entrada de prontuário editada agora consta na página de detalhes da consulta
+        cy.get('#pageName').invoke("text").should("eq", "DETALHAMENTO DE CONSULTA")
+        cy.get('#appointmentDate').invoke("text").should("eq", "Data: 17 de Maio de 2024")
+        cy.get('#appointmentHour').invoke("text").should("eq", "Hora: 08:00")
+        cy.get('#patientNameCPF').invoke("text").should("eq", "Paciente: João Dantas (CPF 02367016062)")
         cy.get('#medicalRecordEntryContent').should(($div) => {
             expect($div.text().trim()).equal("entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h. EDITADA");
-          });
+        });
 
         // Abrir prontuário completo do paciente
         cy.get('#btVerProntuario').click()
@@ -44,6 +48,6 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('#appointmentDate').invoke("text").should("eq", "Data da consulta: 17 de Maio de 2024")
         cy.get('#medicalRecordRealContent').should(($div) => {
             expect($div.text().trim()).equal("entrada de teste para consulta de João Dantas em 17/05/2024 às 08:00h. EDITADA");
-          });
+        });
     })
 })
