@@ -108,7 +108,8 @@ Emanuelle Cavalcanti Bezerra
 
 
 ### Diagrama de atividades do sistema
-#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/61f015a0-0fd4-4f68-93be-23cd4403ed1b)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/c42efead-3031-4bf3-901b-f29356602ace)
+
 
 
 ### GitHub - Issue/bug tracker
