@@ -7,6 +7,8 @@ Este projeto é um repositório para um trabalho de faculdade da disciplina Fund
 
 O sistema Medical Office veio para facilitar a gestão de consultas de consultórios médicos. Através de um serviço on-line, médicos e seus assistentes podem controlar toda vida médica de pacientes, com controle de marcação de consultas e um prontuário médico prático e completo.
 
+Screencast: https://youtu.be/DAByTjlMzn4
+
 ## Equipe
 ecbHealth
 ### Membros
