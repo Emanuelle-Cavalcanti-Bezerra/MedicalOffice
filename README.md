@@ -102,12 +102,13 @@ Emanuelle Cavalcanti Bezerra
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
 #### Estado final da Sprint 3:
-#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/3f769821-d8c4-40b4-ac8a-0fe111f2582c)
-#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/62399e34-b378-4079-abd1-d7014f1b8133)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/94473e93-4de9-451d-976e-f8fa124c1f6e)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/61ca0949-ed2a-4cce-bd00-13469b291a57)
+
 
 
 ### Diagrama de atividades do sistema
-#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/64ded400-2127-41f4-94ff-80254b75096c)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/61f015a0-0fd4-4f68-93be-23cd4403ed1b)
 
 
 ### GitHub - Issue/bug tracker
