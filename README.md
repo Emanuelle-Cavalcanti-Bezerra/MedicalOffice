@@ -113,7 +113,7 @@ Emanuelle Cavalcanti Bezerra
 
 
 ### GitHub - Issue/bug tracker
-#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/abe0a4d9-ae6e-4463-b464-8cd0b40df1ad)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/81c65aec-9b4e-42c1-990c-e3cee2cc898f)
 #### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/bd7099c5-b901-49cb-9d8e-fadabbc226d9)
 
 
