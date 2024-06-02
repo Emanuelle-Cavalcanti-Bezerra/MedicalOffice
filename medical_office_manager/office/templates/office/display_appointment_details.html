@@ -21,14 +21,14 @@
 
 <div class="container-fluid text-center display:block">
     <br>
-    <p><strong>DETALHAMENTO DE CONSULTA</strong></p>
+    <p id="pageName" ><strong>DETALHAMENTO DE CONSULTA</strong></p>
     <br>
 </div>
 
 <div class="container-fluid text-center display:block">
-    <p><strong>Data: {{appointment.date}}</strong></p>
-    <p><strong>Hora: {{appointment.time}}</strong></p>
-    <p><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
+    <p id="appointmentDate" ><strong>Data: {{appointment.date}}</strong></p>
+    <p id="appointmentHour" ><strong>Hora: {{appointment.time}}</strong></p>
+    <p id="patientNameCPF" ><strong>Paciente: {{appointment.patient.name}} (CPF {{appointment.patient.CPF}})</strong></p>
 
     <br>
     <hr>
@@ -88,7 +88,7 @@
 
     <hr>
 
-    <section >
+    <section id="documentsList" >
         <p> <strong>Documentos</strong></p>
         
         

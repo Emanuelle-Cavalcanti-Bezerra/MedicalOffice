@@ -14,7 +14,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Clicar na opção "Consultas" na navbar da home
         cy.get('#appointmentsListDoctor').click()
 
-        // selecionar a data da consulta cuja entrada de prontuário se deseja editar
+        // selecionar a data da consulta a qual será adicionado um documento
         cy.get('#inputDataConsultas').type('2024-05-17')
         cy.get('#btBuscarDataConsultas').click()
 
@@ -28,13 +28,18 @@ describe('test suite SeePatientMedicalRecord', () => {
         // Adicionar o documento 
         cy.get('#btAdicionar').click()
 
+        // Verificar que o documento adicionado agora consta no detalhamento da consulta
+        cy.get('#pageName').invoke("text").should("eq", "DETALHAMENTO DE CONSULTA")
+        cy.get('#appointmentDate').invoke("text").should("eq", "Data: 17 de Maio de 2024")
+        cy.get('#appointmentHour').invoke("text").should("eq", "Hora: 08:00")
+        cy.get('#patientNameCPF').invoke("text").should("eq", "Paciente: João Dantas (CPF 02367016062)")
         cy.get('#Raio-X').invoke("text").should("eq", "- Raio-X")
         cy.get("#btDeletarRaio-X").invoke("val").should("eq", "Deletar")
       
         // Abrir prontuário completo do paciente
         cy.get('#btVerProntuario').click()
 
-        // Verificar se a entrada de prontuário editada agora consta no prontuário do paciente
+        // Verificar que o documento adicionado agora consta no prontuário do paciente
         cy.get('#pageName').invoke("text").should("eq", "PRONTUÁRIO DO PACIENTE")
         cy.get('#patientName').invoke("text").should("eq", "Nome: João Dantas")
         cy.get('#patientCPF').invoke("text").should("eq", "CPF: 02367016062")

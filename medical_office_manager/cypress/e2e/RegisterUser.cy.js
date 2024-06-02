@@ -1,5 +1,5 @@
 describe('test suite SeePatientMedicalRecord', () => {
-    it('Manager registers an assistant user. User data: username - assistente1; email - assistente1@gmail.com; grupo - assistentes; senha - fds20241; senha de confirmação - fds2024.', () => {      
+    it('Manager registers an assistant user. User data: username - assistente1; email - assistente1@gmail.com; grupo - assistentes; senha - fds20241; senha de confirmação - fds20241.', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_register_user.py")
        
@@ -32,7 +32,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         })
     })
 
-    it('Manager registers a doctor user. User data: username - medico1; email - medico1@gmail.com; grupo - medicos; senha - fds20241; senha de confirmação - fds2024.', () => {      
+    it('Manager registers a doctor user. User data: username - medico1; email - medico1@gmail.com; grupo - medicos; senha - fds20241; senha de confirmação - fds20241.', () => {      
         // Executar setup de preparação para o teste
         cy.exec("python scripts/setup_register_user.py")
        
@@ -201,7 +201,7 @@ describe('test suite SeePatientMedicalRecord', () => {
         cy.get('#registerSystemUser').click()
 
         // Preencher formulário de cadastro de usuário e enviar dados
-        cy.get('#email').type('medico1@gmail.com')
+        cy.get('#email').type('outro_medico1@gmail.com')
         cy.get('#médicos').check()
         cy.get('#password').type('fds20241')
         cy.get('#cfpassword').type('fds20241')
@@ -278,7 +278,7 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Preencher formulário de cadastro de usuário e enviar dados
         cy.get('#username').type('medico1')
-        cy.get('#email').type('medico1@gmail.com')
+        cy.get('#email').type('outro_medico1@gmail.com')
         cy.get('#password').type('fds20241')
         cy.get('#cfpassword').type('fds20241')
         cy.get('#btRegister').click()
@@ -317,7 +317,8 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Preencher formulário de cadastro de usuário e enviar dados
         cy.get('#username').type('medico1')
-        cy.get('#email').type('medico1@gmail.com')
+        cy.get('#email').type('outro_medico1@gmail.com')
+        cy.get('#médicos').check()
         cy.get('#cfpassword').type('fds20241')
         cy.get('#btRegister').click()
 
@@ -355,7 +356,8 @@ describe('test suite SeePatientMedicalRecord', () => {
 
         // Preencher formulário de cadastro de usuário e enviar dados
         cy.get('#username').type('medico1')
-        cy.get('#email').type('medico1@gmail.com')
+        cy.get('#email').type('outro_medico1@gmail.com')
+        cy.get('#médicos').check()
         cy.get('#password').type('fds20241')
         cy.get('#btRegister').click()
 
