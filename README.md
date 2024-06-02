@@ -101,9 +101,10 @@ Emanuelle Cavalcanti Bezerra
 
 ### Jira
 #### https://ecbhealth.atlassian.net/jira/software/projects/MO/boards/1/backlog
-#### Estado final da Sprint 2:
-#### ![Projeto FDS Etapa 3 Jira Backlog](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/50145b1e-157c-40aa-b605-c23cb161aa59)
-#### ![Projeto FDS Etapa 3 Jira Painel](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/8e0b3b92-c43d-46d7-b3a4-2fa444eb7ef7)
+#### Estado final da Sprint 3:
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/3f769821-d8c4-40b4-ac8a-0fe111f2582c)
+#### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/62399e34-b378-4079-abd1-d7014f1b8133)
+
 
 ### Diagrama de atividades do sistema
 #### ![image](https://github.com/Emanuelle-Cavalcanti-Bezerra/MedicalOffice/assets/91640621/64ded400-2127-41f4-94ff-80254b75096c)
@@ -117,8 +118,8 @@ Emanuelle Cavalcanti Bezerra
 ### Site 
 #### https://medical-office-manager.azurewebsites.net/
 #### Instruções de acesso:  
-###### Para acessar o sistema, utilizar os usuários já existentes para teste abaixo.
-#### Usuários cadastrados para teste:
+###### Para acessar o sistema, utilizar os usuários já existentes para teste abaixo. Novos usuários só podem ser cadastrados pelo gerente do sistema (usuário "admin").
+#### Usuários já cadastrados para teste:
 ###### usuário: admin; senha: fds20241
 ###### usuário: assistente1; senha: yo10riohTM
 ###### usuário: medico1; senha: V1Zs7W2QoN
