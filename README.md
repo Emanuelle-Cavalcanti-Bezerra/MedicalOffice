@@ -7,11 +7,13 @@ Este projeto é um repositório para um trabalho de faculdade da disciplina Fund
 
 O sistema Medical Office veio para facilitar a gestão de consultas de consultórios médicos. Através de um serviço on-line, médicos e seus assistentes podem controlar toda vida médica de pacientes, com controle de marcação de consultas e um prontuário médico prático e completo.
 
+Screencast: https://youtu.be/DAByTjlMzn4
+
 ## Equipe
 ecbHealth
 ### Membros
 Emanuelle Cavalcanti Bezerra
-
+##
 <details>
 
 <summary>Entrega 1</summary>
@@ -129,8 +131,16 @@ Emanuelle Cavalcanti Bezerra
 #### Screencasts:
 ###### Protótipo Figma - https://youtu.be/NoCPfjymgZ0
 ###### Site - https://youtu.be/DDckcOIzMb4
-###### Pipeline de build e deploy - 
+###### Pipeline de build com testes e deploy - https://youtu.be/SrxrW8GBTJM
 ###### Testes com Cypress - https://youtu.be/GL2hVtRnIXM
 
 </details>
+
+<details>
+
+<summary>Apresentação Final</summary>
+Slides: https://drive.google.com/file/d/1K0iqcoYQdKGAcw5itmjzO5OMAY9xo4B0/view?usp=sharing
+
+</details>
+
 
